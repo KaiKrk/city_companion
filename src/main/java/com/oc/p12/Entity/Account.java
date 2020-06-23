@@ -9,6 +9,7 @@ public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "account_id")
     private int account_id;
 
     private String email;
@@ -21,5 +22,46 @@ public class Account {
     @JoinColumn(name = "adress_id", referencedColumnName = "adress_id")
     private Adress adress;
 
+    public Account() {
+    }
 
+    public int getAccount_id() {
+        return account_id;
+    }
+
+    public void setAccount_id(int account_id) {
+        this.account_id = account_id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Adress getAdress() {
+        return adress;
+    }
+
+    public void setAdress(Adress adress) {
+        this.adress = adress;
+    }
 }
