@@ -105,4 +105,18 @@ public class Weather {
     public void setPrecipirationProbability(int precipirationProbability) {
         this.precipirationProbability = precipirationProbability;
     }
+
+    @Override
+    public String toString() {
+        return "Weather{" +
+                "id=" + id +
+                ", registeredOn=" + registeredOn +
+                ", hourOfTheDay=" + hourOfTheDay +
+                ", temperature=" + temperature +
+                ", feelsLikeTemperature=" + feelsLikeTemperature +
+                ", city='" + city + '\'' +
+                ", precipitationType='" + precipitationType + '\'' +
+                ", precipirationProbability=" + precipirationProbability +
+                '}';
+    }
 }
