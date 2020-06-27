@@ -16,4 +16,11 @@ public class LineSchedule {
     public void setSchedules(List<SchduleDetail> schedules) {
         this.schedules = schedules;
     }
+
+    @Override
+    public String toString() {
+        return "LineSchedule{" +
+                "schedules=" + schedules +
+                '}';
+    }
 }

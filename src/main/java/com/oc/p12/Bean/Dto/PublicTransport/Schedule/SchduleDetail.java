@@ -24,4 +24,12 @@ public class SchduleDetail {
     public void setDestination(String destination) {
         this.destination = destination;
     }
+
+    @Override
+    public String toString() {
+        return "SchduleDetail{" +
+                "message='" + message + '\'' +
+                ", destination='" + destination + '\'' +
+                '}';
+    }
 }

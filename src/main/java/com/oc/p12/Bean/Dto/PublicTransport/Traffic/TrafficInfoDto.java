@@ -4,16 +4,23 @@ import java.util.List;
 
 public class TrafficInfoDto {
 
-    List<TrafficDetail> result;
+    private TrafficDetail result;
 
     public TrafficInfoDto() {
     }
 
-    public List<TrafficDetail> getResult() {
+    public TrafficDetail getResult() {
         return result;
     }
 
-    public void setResult(List<TrafficDetail> result) {
+    public void setResult(TrafficDetail result) {
         this.result = result;
+    }
+
+    @Override
+    public String toString() {
+        return "TrafficInfoDto{" +
+                "result=" + result +
+                '}';
     }
 }
