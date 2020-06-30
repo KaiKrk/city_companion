@@ -1,5 +1,7 @@
 package com.oc.p12.Entity;
 
+import com.oc.p12.Bean.Dto.Weather.WeatherAirQualityDto;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -14,7 +16,7 @@ public class AirQuality {
     private int id;
 
     @Column(name = "epa_aqi")
-    private int epaAqi;
+    private double epaAqi;
 
     @Column(name = "epa_health_concern")
     private String epaHealthConcernMessage;
@@ -33,6 +35,15 @@ public class AirQuality {
 
     public AirQuality() {
     }
+    public AirQuality(WeatherAirQualityDto weatherAirQualityDto) {
+        epaAqi = weatherAirQualityDto.getEpaAqi();
+        epaHealthConcernMessage = weatherAirQualityDto.getEpaHealthConcern();
+        pm25 = weatherAirQualityDto.getPm25();
+        pm10 = weatherAirQualityDto.getPm10();
+        o3 = weatherAirQualityDto.getO3();
+        registeredOn = weatherAirQualityDto.getRegisteredOn();
+    }
+
 
     public int getId() {
         return id;
@@ -42,7 +53,7 @@ public class AirQuality {
         this.id = id;
     }
 
-    public int getEpaAqi() {
+    public double getEpaAqi() {
         return epaAqi;
     }
 

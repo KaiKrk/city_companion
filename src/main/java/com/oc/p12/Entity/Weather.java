@@ -1,13 +1,11 @@
 package com.oc.p12.Entity;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import com.oc.p12.Bean.Dto.Weather.WeatherAirQualityDto;
 
 import javax.persistence.*;
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Date;
 
 @Entity
 @Table(name = "weather")
@@ -41,6 +39,17 @@ public class Weather {
 
     public Weather() {
     }
+    public Weather(WeatherAirQualityDto weatherAirQualityDto) {
+        registeredOn = weatherAirQualityDto.getRegisteredOn().toLocalDate();
+        hourOfTheDay = weatherAirQualityDto.getRegisteredOn().toLocalTime();
+        temperature = weatherAirQualityDto.getTemperature();
+        feelsLikeTemperature = weatherAirQualityDto.getTemperatureFeelsLike();
+        city = "Paris";
+        precipitationType = weatherAirQualityDto.getPrecipitationType();
+        precipirationProbability = weatherAirQualityDto.getPrecipitationProbability();
+
+    }
+
 
     public int getId() {
         return id;

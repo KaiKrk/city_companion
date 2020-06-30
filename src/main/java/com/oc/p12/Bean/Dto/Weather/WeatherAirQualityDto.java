@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Map;
 
-public class WeatherDto {
+public class WeatherAirQualityDto {
 
     public String precipitationType;
 
@@ -50,7 +50,7 @@ public class WeatherDto {
         this.registeredOn = registeredOn;
     }
 
-    public WeatherDto() {
+    public WeatherAirQualityDto() {
     }
 
     public  String truncate(String value, int length)
@@ -182,4 +182,67 @@ public class WeatherDto {
         this.epaHealthConcern = (String)epaHealthConcern.get("value");
     }
 
+    public double getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(double temperature) {
+        this.temperature = temperature;
+    }
+
+    public double getTemperatureFeelsLike() {
+        return temperatureFeelsLike;
+    }
+
+    public void setTemperatureFeelsLike(double temperatureFeelsLike) {
+        this.temperatureFeelsLike = temperatureFeelsLike;
+    }
+
+    public int getPrecipitationProbability() {
+        return precipitationProbability;
+    }
+
+    public void setPrecipitationProbability(int precipitationProbability) {
+        this.precipitationProbability = precipitationProbability;
+    }
+
+    public double getEpaAqi() {
+        return epaAqi;
+    }
+
+    public void setEpaAqi(double epaAqi) {
+        this.epaAqi = epaAqi;
+    }
+
+    public double getPm25() {
+        return pm25;
+    }
+
+    public void setPm25(double pm25) {
+        this.pm25 = pm25;
+    }
+
+    public double getPm10() {
+        return pm10;
+    }
+
+    public void setPm10(double pm10) {
+        this.pm10 = pm10;
+    }
+
+    public double getO3() {
+        return o3;
+    }
+
+    public void setO3(double o3) {
+        this.o3 = o3;
+    }
+
+    public String getEpaHealthConcern() {
+        return epaHealthConcern;
+    }
+
+    public void setEpaHealthConcern(String epaHealthConcern) {
+        this.epaHealthConcern = epaHealthConcern;
+    }
 }
