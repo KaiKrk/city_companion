@@ -1,15 +1,15 @@
 package com.oc.p12.Bean.Dto.PublicTransport.Schedule;
 
-public class PublicTransportSchedule {
+public class PublicTransportScheduleDto {
 
     public LineSchedule result;
 
 
-    public PublicTransportSchedule(LineSchedule result) {
+    public PublicTransportScheduleDto(LineSchedule result) {
         this.result = result;
     }
 
-    public PublicTransportSchedule() {
+    public PublicTransportScheduleDto() {
     }
 
     public LineSchedule getResult() {

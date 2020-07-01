@@ -1,6 +1,6 @@
 package com.oc.p12.Service;
 
-import com.oc.p12.Bean.Dto.PublicTransport.Schedule.PublicTransportSchedule;
+import com.oc.p12.Bean.Dto.PublicTransport.Schedule.PublicTransportScheduleDto;
 import com.oc.p12.Bean.Dto.PublicTransport.Traffic.TrafficInfoDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class PublicTransportServiceTest {
 
         String station = "chatelet";
 
-        PublicTransportSchedule publicTransportSchedule = publicTransportService.getTrafficSchedule(transportType,line,station);
-        System.out.println(publicTransportSchedule);
+        PublicTransportScheduleDto publicTransportScheduleDto = publicTransportService.getTrafficSchedule(transportType,line,station);
+        System.out.println(publicTransportScheduleDto);
     }
 }

@@ -1,6 +1,6 @@
 package com.oc.p12.Service;
 
-import com.oc.p12.Bean.Dto.PublicTransport.Schedule.PublicTransportSchedule;
+import com.oc.p12.Bean.Dto.PublicTransport.Schedule.PublicTransportScheduleDto;
 import com.oc.p12.Bean.Dto.PublicTransport.Traffic.TrafficInfoDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -18,8 +18,8 @@ public class PublicTransportService {
         return trafficInfo.getBody();
     }
 
-    public PublicTransportSchedule getTrafficSchedule(String transportType, String line, String station){
-        ResponseEntity<PublicTransportSchedule> trafficSchedule =  restTemplate.getForEntity(publicTransportApiUrl+"/schedules/"+transportType+"/"+line+"/"+station+"/A+R", PublicTransportSchedule.class);
+    public PublicTransportScheduleDto getTrafficSchedule(String transportType, String line, String station){
+        ResponseEntity<PublicTransportScheduleDto> trafficSchedule =  restTemplate.getForEntity(publicTransportApiUrl+"/schedules/"+transportType+"/"+line+"/"+station+"/A+R", PublicTransportScheduleDto.class);
         return trafficSchedule.getBody();
     }
 }
