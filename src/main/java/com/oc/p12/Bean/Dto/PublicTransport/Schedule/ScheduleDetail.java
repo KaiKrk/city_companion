@@ -1,12 +1,12 @@
 package com.oc.p12.Bean.Dto.PublicTransport.Schedule;
 
-public class SchduleDetail {
+public class ScheduleDetail {
 
     private String message;
 
     private String destination;
 
-    public SchduleDetail() {
+    public ScheduleDetail() {
     }
 
     public String getMessage() {

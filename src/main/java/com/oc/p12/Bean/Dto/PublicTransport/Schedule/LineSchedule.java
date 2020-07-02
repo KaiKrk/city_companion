@@ -4,16 +4,16 @@ import java.util.List;
 
 public class LineSchedule {
 
-    List<SchduleDetail> schedules;
+    List<ScheduleDetail> schedules;
 
     public LineSchedule() {
     }
 
-    public List<SchduleDetail> getSchedules() {
+    public List<ScheduleDetail> getSchedules() {
         return schedules;
     }
 
-    public void setSchedules(List<SchduleDetail> schedules) {
+    public void setSchedules(List<ScheduleDetail> schedules) {
         this.schedules = schedules;
     }
 

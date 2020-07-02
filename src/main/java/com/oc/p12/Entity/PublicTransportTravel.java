@@ -14,7 +14,8 @@ public class PublicTransportTravel {
     @Column(name = "line")
     private String transportLine;
 
-
+    @Column(name = "departure_stop")
+    private String station;
 
     @OneToOne
     @JoinColumn(name = "account_id", referencedColumnName = "account_id")
@@ -40,7 +41,13 @@ public class PublicTransportTravel {
         this.transportLine = transportLine;
     }
 
+    public String getStation() {
+        return station;
+    }
 
+    public void setStation(String station) {
+        this.station = station;
+    }
 
     public Account getAccount() {
         return account;
