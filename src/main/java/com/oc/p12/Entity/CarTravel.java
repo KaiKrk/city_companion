@@ -26,7 +26,7 @@ public class CarTravel {
 
     @OneToOne
     @JoinColumn(name = "adress_id", referencedColumnName = "adress_id")
-    private Adress adress;
+    private Adress workAdress;
 
     public CarTravel() {
     }
@@ -71,11 +71,11 @@ public class CarTravel {
         this.account = account;
     }
 
-    public Adress getAdress() {
-        return adress;
+    public Adress getWorkAdress() {
+        return workAdress;
     }
 
-    public void setAdress(Adress adress) {
-        this.adress = adress;
+    public void setWorkAdress(Adress workAdress) {
+        this.workAdress = workAdress;
     }
 }

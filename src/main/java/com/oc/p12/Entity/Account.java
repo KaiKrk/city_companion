@@ -2,6 +2,7 @@ package com.oc.p12.Entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "account")
@@ -12,6 +13,7 @@ public class Account {
     @Column(name = "account_id")
     private int account_id;
 
+
     private String email;
 
     private String name;
@@ -21,6 +23,9 @@ public class Account {
     @OneToOne
     @JoinColumn(name = "adress_id", referencedColumnName = "adress_id")
     private Adress adress;
+
+    @Column(name = "departure_time")
+    private LocalTime departureTime;
 
     public Account() {
     }
@@ -63,5 +68,13 @@ public class Account {
 
     public void setAdress(Adress adress) {
         this.adress = adress;
+    }
+
+    public LocalTime getDepartureTime() {
+        return departureTime;
+    }
+
+    public void setDepartureTime(LocalTime departureTime) {
+        this.departureTime = departureTime;
     }
 }
