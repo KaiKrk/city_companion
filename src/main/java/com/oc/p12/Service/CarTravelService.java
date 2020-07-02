@@ -1,12 +1,25 @@
 package com.oc.p12.Service;
 
+import com.oc.p12.Bean.Dto.CarTraffic.CarTravelDto;
 import com.oc.p12.Bean.Dto.CarTraffic.CarTravelResponseDto;
+import com.oc.p12.Entity.Account;
+import com.oc.p12.Entity.CarTravel;
+import com.oc.p12.Entity.CarTravelInfo;
+import com.oc.p12.Repository.CarTravelInfoRepository;
+import com.oc.p12.Repository.CarTravelRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
 public class CarTravelService {
+
+    @Autowired
+    CarTravelInfoRepository carTravelInfoRepository;
+
+    @Autowired
+    CarTravelRepository carTravelRepository;
 
     RestTemplate restTemplate = new RestTemplate();
     private String googleMatrixApiUrl = "https://maps.googleapis.com/maps/api/distancematrix/json?units=metric";
@@ -26,5 +39,19 @@ public class CarTravelService {
       return carTravelResponse;
     }
 
+    public CarTravelInfo saveCarTravelInfo(CarTravelInfo carTravelInfo){
+        return carTravelInfoRepository.save(carTravelInfo);
+    }
 
+    public CarTravelInfo findCarTravelInfoByAccount(Account account){
+        return carTravelInfoRepository.findByAccount(account);
+    }
+
+    public CarTravelDto saveCarTravel(CarTravel carTravel){
+        return new CarTravelDto(carTravel);
+    }
+
+    public CarTravel findByCarTravelInfo(CarTravelInfo carTravelInfo){
+        return carTravelRepository.findByCarTravelInfo(carTravelInfo);
+    }
 }

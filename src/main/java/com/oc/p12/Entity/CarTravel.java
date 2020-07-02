@@ -3,7 +3,7 @@ package com.oc.p12.Entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "car")
+@Table(name = "car_journey")
 public class CarTravel {
 
     @Id
@@ -12,21 +12,17 @@ public class CarTravel {
     private int id;
 
     @Column(name = "distance_home_work")
-    private double distanceToWork;
+    private String distanceToWork;
 
     @Column(name = "normal_travel_time")
-    private int normalTravelTimeToWork;
+    private String normalTravelTimeToWork;
 
     @Column(name = "realtime_travel_time")
-    private int realTimeTravelTimeToWork;
+    private String realTimeTravelTimeToWork;
 
-    @OneToOne
-    @JoinColumn(name = "account_id", referencedColumnName = "account_id")
-    private Account account;
-
-    @OneToOne
-    @JoinColumn(name = "adress_id", referencedColumnName = "adress_id")
-    private Adress workAdress;
+    @ManyToOne
+    @JoinColumn(name = "car_journey_info", referencedColumnName = "car_journey_info_id")
+    private CarTravelInfo carTravelInfo;
 
     public CarTravel() {
     }
@@ -39,43 +35,35 @@ public class CarTravel {
         this.id = id;
     }
 
-    public double getDistanceToWork() {
+    public String getDistanceToWork() {
         return distanceToWork;
     }
 
-    public void setDistanceToWork(double distanceToWork) {
+    public void setDistanceToWork(String distanceToWork) {
         this.distanceToWork = distanceToWork;
     }
 
-    public int getNormalTravelTimeToWork() {
+    public String getNormalTravelTimeToWork() {
         return normalTravelTimeToWork;
     }
 
-    public void setNormalTravelTimeToWork(int normalTravelTimeToWork) {
+    public void setNormalTravelTimeToWork(String normalTravelTimeToWork) {
         this.normalTravelTimeToWork = normalTravelTimeToWork;
     }
 
-    public int getRealTimeTravelTimeToWork() {
+    public String getRealTimeTravelTimeToWork() {
         return realTimeTravelTimeToWork;
     }
 
-    public void setRealTimeTravelTimeToWork(int realTimeTravelTimeToWork) {
+    public void setRealTimeTravelTimeToWork(String realTimeTravelTimeToWork) {
         this.realTimeTravelTimeToWork = realTimeTravelTimeToWork;
     }
 
-    public Account getAccount() {
-        return account;
+    public CarTravelInfo getCarTravelInfo() {
+        return carTravelInfo;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-
-    public Adress getWorkAdress() {
-        return workAdress;
-    }
-
-    public void setWorkAdress(Adress workAdress) {
-        this.workAdress = workAdress;
+    public void setCarTravelInfo(CarTravelInfo carTravelInfo) {
+        this.carTravelInfo = carTravelInfo;
     }
 }

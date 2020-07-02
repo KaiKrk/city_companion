@@ -1,6 +1,7 @@
 package com.oc.p12.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.oc.p12.Bean.Dto.CarTraffic.CarTravelResponseDto;
 import org.json.JSONException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class CarServiceTest {
 
     @Test
     public void getCarTravelDatas() throws JsonProcessingException, JSONException {
-        String carTravelDateJson = carTravelService.getTraficInformation("A", "B");
+        CarTravelResponseDto carTravelDateJson = carTravelService.getTraficInformation("A", "B");
         System.out.println("B");
 
 
