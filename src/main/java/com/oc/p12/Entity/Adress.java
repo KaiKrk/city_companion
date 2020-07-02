@@ -14,7 +14,7 @@ public class Adress {
     @OneToOne(mappedBy = "adress")
     private Account account;
 
-    @OneToOne(mappedBy = "adress")
+    @OneToOne(mappedBy = "workAdress")
     private CarTravel carTravel;
 
     public Adress() {
