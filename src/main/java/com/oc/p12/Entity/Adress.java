@@ -32,6 +32,10 @@ public class Adress {
     public Adress() {
     }
 
+    public String getAdressToString(){
+        return streetNumber+" "+streetName+" "+postalCode+" "+city;
+    }
+
     public int getId() {
         return id;
     }
