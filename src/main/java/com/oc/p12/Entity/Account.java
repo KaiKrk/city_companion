@@ -13,7 +13,6 @@ public class Account {
     @Column(name = "account_id")
     private int account_id;
 
-
     private String email;
 
     private String name;

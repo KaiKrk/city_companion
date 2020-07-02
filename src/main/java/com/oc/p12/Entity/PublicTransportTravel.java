@@ -14,15 +14,6 @@ public class PublicTransportTravel {
     @Column(name = "line")
     private String transportLine;
 
-    @Column(name = "direction")
-    private String lineDirection;
-
-    @Column(name = "traffic")
-    private String traffic;
-
-    @Column(name = "traffic_message")
-    private String trafficMessage;
-
     @Column(name = "transport_type")
     private TransportType transportType;
 
@@ -50,29 +41,7 @@ public class PublicTransportTravel {
         this.transportLine = transportLine;
     }
 
-    public String getLineDirection() {
-        return lineDirection;
-    }
 
-    public void setLineDirection(String lineDirection) {
-        this.lineDirection = lineDirection;
-    }
-
-    public String getTraffic() {
-        return traffic;
-    }
-
-    public void setTraffic(String traffic) {
-        this.traffic = traffic;
-    }
-
-    public String getTrafficMessage() {
-        return trafficMessage;
-    }
-
-    public void setTrafficMessage(String trafficMessage) {
-        this.trafficMessage = trafficMessage;
-    }
 
     public TransportType getTransportType() {
         return transportType;
