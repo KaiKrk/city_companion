@@ -1,8 +1,6 @@
 package com.oc.p12.Service;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.oc.p12.Bean.Dto.CarTraffic.CarTravelDto;
+import com.oc.p12.Bean.Dto.CarTraffic.CarTravelResponseDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -18,12 +16,15 @@ public class CarTravelService {
     private String departureTime = "&departure_time=now";
 
 
-    public String getTraficInformation(String origin, String destination){
+    public CarTravelResponseDto getTraficInformation(String origin, String destination){
         origin ="41 rue de seine alfortville";
         destination = "la defense";
-        ResponseEntity<CarTravelDto> responseEntity =
-                restTemplate.getForEntity(googleMatrixApiUrl+originParamater+origin+destinationParameter+destination+googleMatrixApiKey+departureTime, CarTravelDto.class);
+        ResponseEntity<CarTravelResponseDto> responseEntity =
+                restTemplate.getForEntity(googleMatrixApiUrl+originParamater+origin+destinationParameter+destination+googleMatrixApiKey+departureTime, CarTravelResponseDto.class);
         System.out.println("response " + responseEntity);
-      return "a";
+        CarTravelResponseDto carTravelResponse = responseEntity.getBody();
+      return carTravelResponse;
     }
+
+    public Car
 }
