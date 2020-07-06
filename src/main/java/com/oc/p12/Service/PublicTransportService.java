@@ -33,7 +33,7 @@ public class PublicTransportService {
     private RestTemplate restTemplate = new RestTemplate();
 
     public TrafficDetail savePublicTransportTraffic(PublicTransportTraffic publicTransportTraffic){
-        return new TrafficDetail(publicTransportTraffic);
+        return new TrafficDetail(publicTransportTrafficRepository.save(publicTransportTraffic));
     }
 
     public PublicTransportScheduleDto savePublicTransportSchedule(PublicTransportSchedule publicTransportSchedule){
