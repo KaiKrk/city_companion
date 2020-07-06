@@ -7,12 +7,12 @@ import com.oc.p12.Entity.AirQuality;
 import com.oc.p12.Entity.Weather;
 import com.oc.p12.Repository.AirQualityRepository;
 import com.oc.p12.Repository.WeatherRepository;
-import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +40,7 @@ public class WeatherService {
         ResponseEntity<WeatherAirQualityDto[]> responseEntity =
                 restTemplate.getForEntity(weatherApiUrl+weatherApiKey+ parisCoordinates+extraWeatherAirQualityParameters, WeatherAirQualityDto[].class);
         WeatherAirQualityDto[] weatherDatas = responseEntity.getBody();
+        saveWeatherData(weatherDatas);
         System.out.println(weatherDatas.length);
         System.out.println("after request");
         return weatherDatas;
@@ -59,7 +60,7 @@ public class WeatherService {
 
     public List<WeatherResponseDto> getWeatherDataOfTheDay(){
         List<WeatherResponseDto> weatherResponseDtos = new ArrayList<>();
-        List<Weather> weatherDatasOfTheDay = weatherRepository.findAllByDate(LocalDate.now());
+        List<Weather> weatherDatasOfTheDay = weatherRepository.findAllByRegisteredOn(Date.valueOf(LocalDate.now()));
         for (Weather weather : weatherDatasOfTheDay
                 ) {
             WeatherResponseDto weatherResponse = new WeatherResponseDto(weather);
@@ -70,7 +71,7 @@ public class WeatherService {
 
     public List<AirQualityResponseDto> getAirQualityDataOfTheDay(){
         List<AirQualityResponseDto> airQualityResponseDtos = new ArrayList<>();
-        List<AirQuality> airQuality = airQualityRepository.findAllByRegisteredOn(LocalDate.now());
+        List<AirQuality> airQuality = airQualityRepository.findAllByRegisteredOn(Date.valueOf(LocalDate.now()));
         for (AirQuality airQuality1: airQuality
         ) {
             airQualityResponseDtos.add(new AirQualityResponseDto(airQuality1));

@@ -3,6 +3,9 @@ package com.oc.p12.Entity;
 import com.oc.p12.Bean.Dto.Weather.WeatherAirQualityDto;
 
 import javax.persistence.*;
+import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -32,10 +35,10 @@ public class AirQuality {
     private double o3;
 
     @Column(name = "registered_on")
-    private LocalDate registeredOn;
+    private Date registeredOn;
 
     @Column(name = "hour")
-    private LocalTime hour;
+    private Time hour;
 
     public AirQuality() {
     }
@@ -45,8 +48,8 @@ public class AirQuality {
         pm25 = weatherAirQualityDto.getPm25();
         pm10 = weatherAirQualityDto.getPm10();
         o3 = weatherAirQualityDto.getO3();
-        registeredOn = weatherAirQualityDto.getRegisteredOn().toLocalDate();
-        hour = weatherAirQualityDto.getRegisteredOn().toLocalTime();
+        registeredOn = Date.valueOf(weatherAirQualityDto.getRegisteredOn().toLocalDate());
+        hour = Time.valueOf(weatherAirQualityDto.getRegisteredOn().toLocalTime());
     }
 
 
@@ -98,11 +101,11 @@ public class AirQuality {
         this.o3 = o3;
     }
 
-    public LocalDate getRegisteredOn() {
+    public Date getRegisteredOn() {
         return registeredOn;
     }
 
-    public void setRegisteredOn(LocalDate registeredOn) {
+    public void setRegisteredOn(Date registeredOn) {
         this.registeredOn = registeredOn;
     }
 
@@ -110,11 +113,11 @@ public class AirQuality {
         this.epaAqi = epaAqi;
     }
 
-    public LocalTime getHour() {
+    public Time getHour() {
         return hour;
     }
 
-    public void setHour(LocalTime hour) {
+    public void setHour(Time hour) {
         this.hour = hour;
     }
 }

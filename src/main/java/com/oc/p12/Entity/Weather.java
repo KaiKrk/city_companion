@@ -3,9 +3,11 @@ package com.oc.p12.Entity;
 import com.oc.p12.Bean.Dto.Weather.WeatherAirQualityDto;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "weather")
@@ -17,10 +19,10 @@ public class Weather {
     private int id;
 
     @Column(name = "registered_on")
-    private LocalDate registeredOn;
+    private Date registeredOn;
 
     @Column(name = "hour")
-    private LocalTime hourOfTheDay;
+    private Time hourOfTheDay;
 
     @Column(name = "temperature")
     private double temperature;
@@ -40,8 +42,8 @@ public class Weather {
     public Weather() {
     }
     public Weather(WeatherAirQualityDto weatherAirQualityDto) {
-        registeredOn = weatherAirQualityDto.getRegisteredOn().toLocalDate();
-        hourOfTheDay = weatherAirQualityDto.getRegisteredOn().toLocalTime();
+        registeredOn = java.sql.Date.valueOf(weatherAirQualityDto.getRegisteredOn().toLocalDate());
+        hourOfTheDay = Time.valueOf(weatherAirQualityDto.getRegisteredOn().toLocalTime());
         temperature = weatherAirQualityDto.getTemperature();
         feelsLikeTemperature = weatherAirQualityDto.getTemperatureFeelsLike();
         city = "Paris";
@@ -59,19 +61,19 @@ public class Weather {
         this.id = id;
     }
 
-    public LocalDate getRegisteredOn() {
+    public Date getRegisteredOn() {
         return registeredOn;
     }
 
-    public void setRegisteredOn(LocalDate registeredOn) {
+    public void setRegisteredOn(Date registeredOn) {
         this.registeredOn = registeredOn;
     }
 
-    public LocalTime getHourOfTheDay() {
+    public Time getHourOfTheDay() {
         return hourOfTheDay;
     }
 
-    public void setHourOfTheDay(LocalTime hourOfTheDay) {
+    public void setHourOfTheDay(Time hourOfTheDay) {
         this.hourOfTheDay = hourOfTheDay;
     }
 
