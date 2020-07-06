@@ -1,8 +1,14 @@
 package com.oc.p12.Entity;
 
+import com.oc.p12.Bean.Dto.Weather.WeatherAirQualityDto;
+
 import javax.persistence.*;
+import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "air_quality")
@@ -14,7 +20,7 @@ public class AirQuality {
     private int id;
 
     @Column(name = "epa_aqi")
-    private int epaAqi;
+    private double epaAqi;
 
     @Column(name = "epa_health_concern")
     private String epaHealthConcernMessage;
@@ -29,10 +35,23 @@ public class AirQuality {
     private double o3;
 
     @Column(name = "registered_on")
-    private LocalDateTime registeredOn;
+    private Date registeredOn;
+
+    @Column(name = "hour")
+    private Time hour;
 
     public AirQuality() {
     }
+    public AirQuality(WeatherAirQualityDto weatherAirQualityDto) {
+        epaAqi = weatherAirQualityDto.getEpaAqi();
+        epaHealthConcernMessage = weatherAirQualityDto.getEpaHealthConcern();
+        pm25 = weatherAirQualityDto.getPm25();
+        pm10 = weatherAirQualityDto.getPm10();
+        o3 = weatherAirQualityDto.getO3();
+        registeredOn = Date.valueOf(weatherAirQualityDto.getRegisteredOn().toLocalDate());
+        hour = Time.valueOf(weatherAirQualityDto.getRegisteredOn().toLocalTime());
+    }
+
 
     public int getId() {
         return id;
@@ -42,7 +61,7 @@ public class AirQuality {
         this.id = id;
     }
 
-    public int getEpaAqi() {
+    public double getEpaAqi() {
         return epaAqi;
     }
 
@@ -82,11 +101,23 @@ public class AirQuality {
         this.o3 = o3;
     }
 
-    public LocalDateTime getRegisteredOn() {
+    public Date getRegisteredOn() {
         return registeredOn;
     }
 
-    public void setRegisteredOn(LocalDateTime registeredOn) {
+    public void setRegisteredOn(Date registeredOn) {
         this.registeredOn = registeredOn;
+    }
+
+    public void setEpaAqi(double epaAqi) {
+        this.epaAqi = epaAqi;
+    }
+
+    public Time getHour() {
+        return hour;
+    }
+
+    public void setHour(Time hour) {
+        this.hour = hour;
     }
 }
