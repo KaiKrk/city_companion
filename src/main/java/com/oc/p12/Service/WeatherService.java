@@ -1,11 +1,13 @@
 package com.oc.p12.Service;
 
+import com.oc.p12.Bean.Dto.Weather.AirQualityResponseDto;
 import com.oc.p12.Bean.Dto.Weather.WeatherAirQualityDto;
 import com.oc.p12.Bean.Dto.Weather.WeatherResponseDto;
 import com.oc.p12.Entity.AirQuality;
 import com.oc.p12.Entity.Weather;
 import com.oc.p12.Repository.AirQualityRepository;
 import com.oc.p12.Repository.WeatherRepository;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -64,6 +66,16 @@ public class WeatherService {
             weatherResponseDtos.add(weatherResponse);
         }
         return  weatherResponseDtos;
+    }
+
+    public List<AirQualityResponseDto> getAirQualityDataOfTheDay(){
+        List<AirQualityResponseDto> airQualityResponseDtos = new ArrayList<>();
+        List<AirQuality> airQuality = airQualityRepository.findAllByRegisteredOn(LocalDate.now());
+        for (AirQuality airQuality1: airQuality
+        ) {
+            airQualityResponseDtos.add(new AirQualityResponseDto(airQuality1));
+        }
+        return  airQualityResponseDtos;
     }
 
 
