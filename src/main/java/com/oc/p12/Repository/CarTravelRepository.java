@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CarTravelRepository extends JpaRepository<CarTravel, Integer> {
 
-    public CarTravel findByCarTravelInfo(CarTravelInfo carTravelInfo);
+    public CarTravel findById(int id);
 }

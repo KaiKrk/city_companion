@@ -1,7 +1,6 @@
 package com.oc.p12.Entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import java.time.LocalTime;
 
 @Entity
@@ -11,12 +10,18 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "account_id")
-    private int account_id;
+    private int accountId;
 
+    @Column(name = "email")
     private String email;
 
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "surname")
+    private String surname;
+
+    @Column(name = "password")
     private String password;
 
     @OneToOne
@@ -29,12 +34,12 @@ public class Account {
     public Account() {
     }
 
-    public int getAccount_id() {
-        return account_id;
+    public int getAccountId() {
+        return accountId;
     }
 
-    public void setAccount_id(int account_id) {
-        this.account_id = account_id;
+    public void setAccountId(int account_id) {
+        this.accountId = account_id;
     }
 
     public String getEmail() {
@@ -75,5 +80,13 @@ public class Account {
 
     public void setDepartureTime(LocalTime departureTime) {
         this.departureTime = departureTime;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 }
