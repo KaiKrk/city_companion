@@ -24,6 +24,10 @@ public class CarTravelInfo {
     public CarTravelInfo() {
     }
 
+    public CarTravelInfo(Account account, Adress workAdress){
+        this.account = account;
+        this.workAdress = workAdress;
+    }
     public int getId() {
         return id;
     }
