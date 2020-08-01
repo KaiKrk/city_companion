@@ -29,7 +29,7 @@ public class AdressController {
     CarTravelRepository carTravelRepository;
 
     @PostMapping("/saveAdress")
-    public ResponseEntity<AdressDto> saveAdress(Adress adress){
+    public ResponseEntity<AdressDto> saveAdress(@RequestBody Adress adress){
         AdressDto adressDto = new AdressDto(adressRepository.save(adress));
         return new ResponseEntity<>(adressDto, HttpStatus.OK);
     }

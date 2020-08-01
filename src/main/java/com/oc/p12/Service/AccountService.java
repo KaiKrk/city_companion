@@ -17,6 +17,7 @@ public class AccountService {
     @Autowired
     AccountRepository accountRepository;
     public AccountDto save(Account account){
+        System.out.println(account);
         account.setPassword(passwordEncoder.encode(account.getPassword()));
         return new AccountDto(accountRepository.save(account));
     }

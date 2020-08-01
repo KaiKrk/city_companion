@@ -89,4 +89,17 @@ public class Account {
     public void setSurname(String surname) {
         this.surname = surname;
     }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "accountId=" + accountId +
+                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", password='" + password + '\'' +
+                ", adress=" + adress +
+                ", departureTime=" + departureTime +
+                '}';
+    }
 }

@@ -4,6 +4,7 @@ import com.oc.p12.Bean.Dto.Account.AccountDto;
 import com.oc.p12.Bean.Dto.Account.AccountRequest;
 import com.oc.p12.Entity.Account;
 import com.oc.p12.Repository.AccountRepository;
+import com.oc.p12.Service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,13 +20,15 @@ public class AccountController {
     @Autowired
     AccountRepository accountRepository;
     //change encoder to service instead of controller and test again save account
+
+    @Autowired
+    AccountService accountService;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @PostMapping("/saveAccount")
-    public ResponseEntity<AccountDto> saveAccount(Account account){
-        account.setPassword(passwordEncoder.encode(account.getPassword()));
-        AccountDto accountDto = new AccountDto(accountRepository.save(account));
+    public ResponseEntity<AccountDto> saveAccount(@RequestBody Account account){
+        AccountDto accountDto = accountService.save(account);
         return new ResponseEntity<>(accountDto, HttpStatus.OK);
     }
 
