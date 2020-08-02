@@ -2,7 +2,7 @@ package com.oc.p12.Bean.Dto.PublicTransport.Traffic;
 
 import com.oc.p12.Entity.PublicTransportTraffic;
 
-public class TrafficDetail {
+public class TrafficInfo {
 
     private String line;
 
@@ -10,13 +10,13 @@ public class TrafficDetail {
 
     private String message;
 
-    public TrafficDetail(PublicTransportTraffic publicTransportTraffic) {
+    public TrafficInfo(PublicTransportTraffic publicTransportTraffic) {
         this.line = publicTransportTraffic.getLine();
         this.title = publicTransportTraffic.getTitle();
         this.message = publicTransportTraffic.getMessage();
     }
 
-    public TrafficDetail() {
+    public TrafficInfo() {
     }
 
     public String getLine() {

@@ -15,7 +15,7 @@ public class Adress {
     private Account account;
 
     @OneToOne(mappedBy = "workAdress")
-    private CarTravel carTravel;
+    private CarTravelInfo carTravel;
 
     @Column(name = "house_number")
     public String streetNumber;
@@ -30,6 +30,10 @@ public class Adress {
     public int postalCode;
 
     public Adress() {
+    }
+
+    public String getAdressToString(){
+        return streetNumber+" "+streetName+" "+postalCode+" "+city;
     }
 
     public int getId() {
@@ -48,11 +52,11 @@ public class Adress {
         this.account = account;
     }
 
-    public CarTravel getCarTravel() {
+    public CarTravelInfo getCarTravel() {
         return carTravel;
     }
 
-    public void setCarTravel(CarTravel carTravel) {
+    public void setCarTravel(CarTravelInfo carTravel) {
         this.carTravel = carTravel;
     }
 

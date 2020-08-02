@@ -1,19 +1,17 @@
 package com.oc.p12.Bean.Dto.PublicTransport.Traffic;
 
-import java.util.List;
+public class TrafficInfoResponse {
 
-public class TrafficInfoDto {
+    private TrafficInfo result;
 
-    private TrafficDetail result;
-
-    public TrafficInfoDto() {
+    public TrafficInfoResponse() {
     }
 
-    public TrafficDetail getResult() {
+    public TrafficInfo getResult() {
         return result;
     }
 
-    public void setResult(TrafficDetail result) {
+    public void setResult(TrafficInfo result) {
         this.result = result;
     }
 

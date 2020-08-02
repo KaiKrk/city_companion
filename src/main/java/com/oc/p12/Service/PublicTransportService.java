@@ -3,8 +3,8 @@ package com.oc.p12.Service;
 import com.oc.p12.Bean.Dto.PublicTransport.PublicTransportTravelDto;
 import com.oc.p12.Bean.Dto.PublicTransport.Schedule.PublicTransportScheduleDto;
 import com.oc.p12.Bean.Dto.PublicTransport.Schedule.PublicTransportScheduleResponse;
-import com.oc.p12.Bean.Dto.PublicTransport.Traffic.TrafficDetail;
-import com.oc.p12.Bean.Dto.PublicTransport.Traffic.TrafficInfoDto;
+import com.oc.p12.Bean.Dto.PublicTransport.Traffic.TrafficInfo;
+import com.oc.p12.Bean.Dto.PublicTransport.Traffic.TrafficInfoResponse;
 import com.oc.p12.Entity.Account;
 import com.oc.p12.Entity.PublicTransportSchedule;
 import com.oc.p12.Entity.PublicTransportTraffic;
@@ -32,8 +32,8 @@ public class PublicTransportService {
     private String publicTransportApiUrl = "https://api-ratp.pierre-grimaud.fr/v4";
     private RestTemplate restTemplate = new RestTemplate();
 
-    public TrafficDetail savePublicTransportTraffic(PublicTransportTraffic publicTransportTraffic){
-        return new TrafficDetail(publicTransportTrafficRepository.save(publicTransportTraffic));
+    public TrafficInfo savePublicTransportTraffic(PublicTransportTraffic publicTransportTraffic){
+        return new TrafficInfo(publicTransportTrafficRepository.save(publicTransportTraffic));
     }
 
     public PublicTransportScheduleDto savePublicTransportSchedule(PublicTransportSchedule publicTransportSchedule){
@@ -44,13 +44,19 @@ public class PublicTransportService {
         return new PublicTransportTravelDto(publicTransportTravelRepository.save(publicTransportTravelInfo));
     }
 
-    public TrafficInfoDto getTrafficInformation(String transportType ,String line){
+    public TrafficInfoResponse fetchTrafficInformation(String transportType , String line){
 
-        ResponseEntity<TrafficInfoDto> trafficInfo = restTemplate.getForEntity(publicTransportApiUrl+"/traffic/"+transportType+"/"+line, TrafficInfoDto.class);
+        ResponseEntity<TrafficInfoResponse> trafficInfo = restTemplate.getForEntity(publicTransportApiUrl+"/traffic/"+transportType+"/"+line, TrafficInfoResponse.class);
+        savePublicTransportTraffic(new PublicTransportTraffic(trafficInfo.getBody().getResult()));
         return trafficInfo.getBody();
     }
 
-    public PublicTransportScheduleResponse getTrafficSchedule(String transportType, String line, String station){
+    public TrafficInfo getTrafficInformation(String line){
+        TrafficInfo trafficInfo =  publicTransportTrafficRepository.findLatestRecordByLine(line);
+        return trafficInfo;
+    }
+
+    public PublicTransportScheduleResponse fetchTrafficSchedule(String transportType, String line, String station){
         ResponseEntity<PublicTransportScheduleResponse> trafficSchedule =  restTemplate.getForEntity(publicTransportApiUrl+"/schedules/"+transportType+"/"+line+"/"+station+"/A+R", PublicTransportScheduleResponse.class);
         return trafficSchedule.getBody();
     }

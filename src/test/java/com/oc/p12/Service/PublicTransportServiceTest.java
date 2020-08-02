@@ -1,10 +1,11 @@
 package com.oc.p12.Service;
 
 import com.oc.p12.Bean.Dto.PublicTransport.Schedule.PublicTransportScheduleResponse;
-import com.oc.p12.Bean.Dto.PublicTransport.Traffic.TrafficInfoDto;
+import com.oc.p12.Bean.Dto.PublicTransport.Traffic.TrafficInfoResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest
 public class PublicTransportServiceTest {
@@ -15,11 +16,11 @@ public class PublicTransportServiceTest {
     @Test
     public void getTrafficInfoTest(){
         String transportType = "metros";
-
         String line = "14";
 
-        TrafficInfoDto trafficInfoDto = publicTransportService.getTrafficInformation(transportType,line);
-        System.out.println(trafficInfoDto);
+        TrafficInfoResponse trafficInfoResponse = publicTransportService.fetchTrafficInformation(transportType,line);
+        System.out.println(trafficInfoResponse);
+        assertThat(trafficInfoResponse.getResult().getLine()).isEqualTo(line);
     }
 
     @Test
@@ -30,7 +31,8 @@ public class PublicTransportServiceTest {
 
         String station = "chatelet";
 
-        PublicTransportScheduleResponse publicTransportScheduleResponse = publicTransportService.getTrafficSchedule(transportType,line,station);
+        PublicTransportScheduleResponse publicTransportScheduleResponse = publicTransportService.fetchTrafficSchedule(transportType,line,station);
         System.out.println(publicTransportScheduleResponse);
+        assertThat(publicTransportScheduleResponse.getResult().getSchedules()!= null);
     }
 }

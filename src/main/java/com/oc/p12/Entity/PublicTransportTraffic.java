@@ -1,8 +1,10 @@
 package com.oc.p12.Entity;
 
+import com.oc.p12.Bean.Dto.PublicTransport.Traffic.TrafficInfo;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "public_transport_traffic")
@@ -23,7 +25,17 @@ public class PublicTransportTraffic {
     @Column(name = "message")
     private String message;
 
+    @Column(name = "registered_on")
+    private LocalDateTime registerOn;
+
     public PublicTransportTraffic() {
+    }
+
+    public PublicTransportTraffic(TrafficInfo trafficInfo){
+        this.line = trafficInfo.getLine();
+        this.message = trafficInfo.getMessage();
+        this.title = trafficInfo.getTitle();
+        this.registerOn = LocalDateTime.now();
     }
 
     public int getId() {

@@ -16,6 +16,8 @@ public class PublicTransportTravel {
 
     @Column(name = "departure_stop")
     private String station;
+    @Column(name = "transport_type")
+    private TransportType transportType;
 
     @OneToOne
     @JoinColumn(name = "account_id", referencedColumnName = "account_id")
@@ -41,12 +43,16 @@ public class PublicTransportTravel {
         this.transportLine = transportLine;
     }
 
-    public String getStation() {
-        return station;
-    }
-
     public void setStation(String station) {
         this.station = station;
+    }
+
+    public TransportType getTransportType() {
+        return transportType;
+    }
+
+    public void setTransportType(TransportType transportType) {
+        this.transportType = transportType;
     }
 
     public Account getAccount() {
@@ -55,5 +61,11 @@ public class PublicTransportTravel {
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    public String getStation() {
+        return station;
+
+
     }
 }

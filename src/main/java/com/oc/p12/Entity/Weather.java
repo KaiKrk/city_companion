@@ -1,6 +1,6 @@
 package com.oc.p12.Entity;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import com.oc.p12.Bean.Dto.Weather.WeatherAirQualityDto;
 
 import javax.persistence.*;
 import java.sql.Time;
@@ -19,10 +19,10 @@ public class Weather {
     private int id;
 
     @Column(name = "registered_on")
-    private LocalDate registeredOn;
+    private Date registeredOn;
 
     @Column(name = "hour")
-    private LocalTime hourOfTheDay;
+    private Time hourOfTheDay;
 
     @Column(name = "temperature")
     private double temperature;
@@ -41,6 +41,17 @@ public class Weather {
 
     public Weather() {
     }
+    public Weather(WeatherAirQualityDto weatherAirQualityDto) {
+        registeredOn = java.sql.Date.valueOf(weatherAirQualityDto.getRegisteredOn().toLocalDate());
+        hourOfTheDay = Time.valueOf(weatherAirQualityDto.getRegisteredOn().toLocalTime());
+        temperature = weatherAirQualityDto.getTemperature();
+        feelsLikeTemperature = weatherAirQualityDto.getTemperatureFeelsLike();
+        city = "Paris";
+        precipitationType = weatherAirQualityDto.getPrecipitationType();
+        precipirationProbability = weatherAirQualityDto.getPrecipitationProbability();
+
+    }
+
 
     public int getId() {
         return id;
@@ -50,19 +61,19 @@ public class Weather {
         this.id = id;
     }
 
-    public LocalDate getRegisteredOn() {
+    public Date getRegisteredOn() {
         return registeredOn;
     }
 
-    public void setRegisteredOn(LocalDate registeredOn) {
+    public void setRegisteredOn(Date registeredOn) {
         this.registeredOn = registeredOn;
     }
 
-    public LocalTime getHourOfTheDay() {
+    public Time getHourOfTheDay() {
         return hourOfTheDay;
     }
 
-    public void setHourOfTheDay(LocalTime hourOfTheDay) {
+    public void setHourOfTheDay(Time hourOfTheDay) {
         this.hourOfTheDay = hourOfTheDay;
     }
 
@@ -104,5 +115,19 @@ public class Weather {
 
     public void setPrecipirationProbability(int precipirationProbability) {
         this.precipirationProbability = precipirationProbability;
+    }
+
+    @Override
+    public String toString() {
+        return "Weather{" +
+                "id=" + id +
+                ", registeredOn=" + registeredOn +
+                ", hourOfTheDay=" + hourOfTheDay +
+                ", temperature=" + temperature +
+                ", feelsLikeTemperature=" + feelsLikeTemperature +
+                ", city='" + city + '\'' +
+                ", precipitationType='" + precipitationType + '\'' +
+                ", precipirationProbability=" + precipirationProbability +
+                '}';
     }
 }
