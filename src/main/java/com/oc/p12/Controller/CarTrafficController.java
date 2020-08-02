@@ -1,6 +1,7 @@
 package com.oc.p12.Controller;
 
 import com.oc.p12.Bean.Dto.Account.AccountRequest;
+import com.oc.p12.Bean.Dto.Adress.AdressRequest;
 import com.oc.p12.Bean.Dto.CarTraffic.CarTravelDto;
 import com.oc.p12.Entity.Adress;
 import com.oc.p12.Entity.CarTravel;
@@ -36,9 +37,9 @@ public class CarTrafficController {
     }
 
     @PostMapping("/saveCarTravelInfo")
-    public ResponseEntity<CarTravelInfo> saveCarTravelInfo(int accountId, Adress workAdress){
+    public ResponseEntity<CarTravelInfo> saveCarTravelInfo(AdressRequest adressRequest, Adress workAdress){
         Adress newAdress = adressService.save(workAdress);
-        CarTravelInfo newCarTravelInfo = new CarTravelInfo(accountService.findById(accountId), newAdress);
+        CarTravelInfo newCarTravelInfo = new CarTravelInfo(accountService.findById(adressRequest.getCarTravelId()), newAdress);
         carTravelService.saveCarTravelInfo(newCarTravelInfo);
         return new ResponseEntity<>(newCarTravelInfo, HttpStatus.OK);
     }
