@@ -21,4 +21,12 @@ public class AdressRequest {
     public void setCarTravelId(int carTravelId) {
         this.carTravelId = carTravelId;
     }
+
+    @Override
+    public String toString() {
+        return "AdressRequest{" +
+                "accountId=" + accountId +
+                ", carTravelId=" + carTravelId +
+                '}';
+    }
 }

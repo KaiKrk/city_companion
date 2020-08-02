@@ -16,6 +16,13 @@ public class AccountService {
 
     @Autowired
     AccountRepository accountRepository;
+
+    public Account findById(int id){
+        Account account = accountRepository.findByAccountId(id);
+        return  account;
+    }
+
+
     public AccountDto save(Account account){
         System.out.println(account);
         account.setPassword(passwordEncoder.encode(account.getPassword()));
