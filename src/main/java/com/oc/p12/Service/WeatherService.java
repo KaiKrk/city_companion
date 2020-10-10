@@ -42,7 +42,6 @@ public class WeatherService {
         WeatherAirQualityDto[] weatherDatas = responseEntity.getBody();
         saveWeatherData(weatherDatas);
         System.out.println(weatherDatas.length);
-        System.out.println("after request");
         return weatherDatas;
     }
 
