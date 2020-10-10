@@ -37,6 +37,9 @@ public class AirQuality {
     @Column(name = "registered_on")
     private Date registeredOn;
 
+    @Column(name = "day")
+    private Date day;
+
     @Column(name = "hour")
     private Time hour;
 
@@ -48,7 +51,8 @@ public class AirQuality {
         pm25 = weatherAirQualityDto.getPm25();
         pm10 = weatherAirQualityDto.getPm10();
         o3 = weatherAirQualityDto.getO3();
-        registeredOn = Date.valueOf(weatherAirQualityDto.getRegisteredOn().toLocalDate());
+        day = Date.valueOf(weatherAirQualityDto.getRegisteredOn().toLocalDate());
+        registeredOn = java.sql.Date.valueOf(LocalDate.now());
         hour = Time.valueOf(weatherAirQualityDto.getRegisteredOn().toLocalTime());
     }
 

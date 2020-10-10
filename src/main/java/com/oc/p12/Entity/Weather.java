@@ -21,6 +21,9 @@ public class Weather {
     @Column(name = "registered_on")
     private Date registeredOn;
 
+    @Column(name = "day")
+    private Date day;
+
     @Column(name = "hour")
     private Time hourOfTheDay;
 
@@ -42,7 +45,8 @@ public class Weather {
     public Weather() {
     }
     public Weather(WeatherAirQualityDto weatherAirQualityDto) {
-        registeredOn = java.sql.Date.valueOf(weatherAirQualityDto.getRegisteredOn().toLocalDate());
+        day = java.sql.Date.valueOf(weatherAirQualityDto.getRegisteredOn().toLocalDate());
+        registeredOn = java.sql.Date.valueOf(LocalDate.now());
         hourOfTheDay = Time.valueOf(weatherAirQualityDto.getRegisteredOn().toLocalTime());
         temperature = weatherAirQualityDto.getTemperature();
         feelsLikeTemperature = weatherAirQualityDto.getTemperatureFeelsLike();
