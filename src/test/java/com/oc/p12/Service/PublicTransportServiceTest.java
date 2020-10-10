@@ -16,7 +16,7 @@ public class PublicTransportServiceTest {
     @Test
     public void getTrafficInfoTest(){
         String transportType = "metros";
-        String line = "14";
+        String line = "1";
 
         TrafficInfoResponse trafficInfoResponse = publicTransportService.fetchTrafficInformation(transportType,line);
         System.out.println(trafficInfoResponse);
