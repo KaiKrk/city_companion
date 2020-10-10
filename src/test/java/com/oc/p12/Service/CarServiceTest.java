@@ -19,7 +19,8 @@ public class CarServiceTest {
         CarTravelResponseDto carTravelDateJson = carTravelService.getTraficInformation("A", "B");
         System.out.println("B");
 
-
     }
+
+
 
 }

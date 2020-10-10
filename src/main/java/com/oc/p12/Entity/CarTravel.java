@@ -1,5 +1,8 @@
 package com.oc.p12.Entity;
 
+import com.oc.p12.Bean.Dto.CarTraffic.CarTravelDto;
+import com.oc.p12.Bean.Dto.CarTraffic.CarTravelResponseDto;
+
 import javax.persistence.*;
 
 @Entity
@@ -24,7 +27,15 @@ public class CarTravel {
     @JoinColumn(name = "car_journey_info", referencedColumnName = "car_journey_info_id")
     private CarTravelInfo carTravelInfo;
 
+
+
     public CarTravel() {
+    }
+
+    public CarTravel (CarTravelResponseDto response, CarTravelInfo carTravelInfo){
+        this.distanceToWork = response.getRows().get(1).getElements().get(1).getDistance().getText();
+        this.normalTravelTimeToWork = response.getRows().get(1).getElements().get(1).getDuration().getText();
+        this.realTimeTravelTimeToWork = response.getRows().get(1).getElements().get(1).getDurationInTraffic().getText();
     }
 
     public int getId() {

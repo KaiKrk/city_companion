@@ -19,6 +19,7 @@ public class CarTravelResponseDto {
     public CarTravelResponseDto() {
     }
 
+
     public List<String> getOriginAddresses() {
         return originAddresses;
     }

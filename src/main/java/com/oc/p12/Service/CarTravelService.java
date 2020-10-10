@@ -39,6 +39,12 @@ public class CarTravelService {
       return carTravelResponse;
     }
 
+    public CarTravelDto fetchRealTimeTrafficByAccount(CarTravelInfo carTravelInfo){
+        CarTravelResponseDto actualTraffic = getTraficInformation(carTravelInfo.getAccount().getAdress().getAdressToString(), carTravelInfo.getWorkAdress().getAdressToString());
+        CarTravel carTravel = new CarTravel(actualTraffic, carTravelInfo);
+        return new CarTravelDto( carTravelRepository.save(carTravel));
+    }
+
     public CarTravelInfo saveCarTravelInfo(CarTravelInfo carTravelInfo){
         return carTravelInfoRepository.save(carTravelInfo);
     }
@@ -51,7 +57,7 @@ public class CarTravelService {
         return new CarTravelDto(carTravel);
     }
 
-    public CarTravel findByCarTravelInfo(CarTravelInfo carTravelInfo){
-        return carTravelRepository.findById(carTravelInfo.getId());
+    public CarTravel getCarTravelByCarTravelInfo(CarTravelInfo carTravelInfo){
+        return carTravelRepository.findByCarTravelInfo(carTravelInfo);
     }
 }
