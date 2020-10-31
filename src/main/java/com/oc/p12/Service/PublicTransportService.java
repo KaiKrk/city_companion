@@ -17,6 +17,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
 @Service
 public class PublicTransportService {
 
@@ -63,6 +65,10 @@ public class PublicTransportService {
 
     public PublicTransportTravelDto getPublicTransportTravel(Account account){
         return new PublicTransportTravelDto(publicTransportTravelRepository.findByAccount(account));
+    }
+
+    public List<PublicTransportTravel> getPublicTransportTravelsByAccountIn(List<Account> accounts){
+     return publicTransportTravelRepository.findPublicTransportTravelsByAccountIn(accounts);
     }
 
 

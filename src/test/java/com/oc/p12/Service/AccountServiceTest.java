@@ -23,7 +23,7 @@ public class AccountServiceTest {
     public void initAccount(){
         testAccount.setEmail("adamp12@yopmail.com");
         testAccount.setPassword("123");
-        testAccount.setDepartureTime(LocalTime.NOON);
+        testAccount.setDepartureTime(LocalTime.NOON.toString());
         testAccount.setName("Adam");
         testAccount.setSurname("Johnson");
     }

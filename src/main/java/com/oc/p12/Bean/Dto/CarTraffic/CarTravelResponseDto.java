@@ -61,4 +61,16 @@ public class CarTravelResponseDto {
                 ", status='" + status + '\'' +
                 '}';
     }
+
+    public String normalTrafficTime(){
+        return rows.get(0).getElements().get(0).getDuration().getText();
+    }
+
+    public String realTrafficTime(){
+        return rows.get(0).getElements().get(0).getDurationInTraffic().getText();
+    }
+
+    public String distanceAtoB(){
+        return rows.get(0).getElements().get(0).getDistance().getText();
+    }
 }

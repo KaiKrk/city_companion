@@ -14,7 +14,7 @@ public class AccountDto {
 
     private String surname;
 
-    private LocalTime departureTime;
+    private String departureTime;
 
     public AccountDto(Account account) {
         this.id = account.getAccountId();
@@ -56,11 +56,11 @@ public class AccountDto {
         this.surname = surname;
     }
 
-    public LocalTime getDepartureTime() {
+    public String getDepartureTime() {
         return departureTime;
     }
 
-    public void setDepartureTime(LocalTime departureTime) {
+    public void setDepartureTime(String departureTime) {
         this.departureTime = departureTime;
     }
 

@@ -1,9 +1,12 @@
 package com.oc.p12.Bean.Dto.Adress;
 
+import org.springframework.lang.Nullable;
+
 public class AdressRequest {
 
     public int accountId;
 
+    @Nullable
     public int carTravelId;
 
     public int getAccountId() {

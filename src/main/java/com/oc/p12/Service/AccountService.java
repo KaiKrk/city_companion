@@ -7,12 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AccountService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
-
 
     @Autowired
     AccountRepository accountRepository;
@@ -31,5 +32,17 @@ public class AccountService {
 
     public void delete(int accountId){
         accountRepository.delete(accountRepository.findByAccountId(accountId));
+    }
+
+    public List<Account> findAccountByListIdAccount(List<Integer> idAccounts){
+      return  accountRepository.findAccountByAccountIdIn(idAccounts);
+    }
+
+    public List<Account> getAccountByDepartureTime(String time){
+        return accountRepository.findAccountByDepartureTime(time);
+    }
+
+    public Account findAccountByEmail(String email){
+      return accountRepository.findAccountByEmail(email);
     }
 }

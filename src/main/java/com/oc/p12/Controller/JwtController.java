@@ -1,6 +1,8 @@
 package com.oc.p12.Controller;
 
 import com.oc.p12.Bean.AuthenticationRequest;
+import com.oc.p12.Bean.Dto.Authentication.AuthUser;
+import com.oc.p12.Entity.Account;
 import com.oc.p12.Service.AccountService;
 import com.oc.p12.Service.JwtService;
 import com.oc.p12.Service.MyUserDetailsService;
@@ -47,7 +49,14 @@ public class JwtController {
                 .loadUserByUsername(authenticationRequest.getUsername());
 
         final String jwt = jwtTokenService.generateToken(userDetails);
-
-        return ResponseEntity.ok(jwt);
+        Account account = accountService.findAccountByEmail(authenticationRequest.getUsername());
+        AuthUser authUser= new AuthUser();
+        authUser.setId(account.getAccountId());
+        authUser.setEmail(account.getEmail());
+        authUser.setName(account.getName());
+        authUser.setSurname(account.getSurname());
+        authUser.setToken(jwt);
+        authUser.setDepartureHour(account.getDepartureTime());
+        return ResponseEntity.ok(authUser);
     }
 }

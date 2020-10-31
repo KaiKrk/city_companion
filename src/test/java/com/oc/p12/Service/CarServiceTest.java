@@ -17,7 +17,9 @@ public class CarServiceTest {
     @Test
     public void getCarTravelDatas() throws JsonProcessingException, JSONException {
         CarTravelResponseDto carTravelDateJson = carTravelService.getTraficInformation("A", "B");
-        System.out.println("B");
+        System.out.println(carTravelDateJson.normalTrafficTime());
+        System.out.println(carTravelDateJson.realTrafficTime());
+        System.out.println(carTravelDateJson.distanceAtoB());
 
     }
 

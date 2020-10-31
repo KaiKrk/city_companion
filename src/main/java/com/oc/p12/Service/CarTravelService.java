@@ -31,10 +31,9 @@ public class CarTravelService {
 
     public CarTravelResponseDto getTraficInformation(String origin, String destination){
         origin ="41 rue de seine alfortville";
-        destination = "la defense";
+        destination = "krakow";
         ResponseEntity<CarTravelResponseDto> responseEntity =
                 restTemplate.getForEntity(googleMatrixApiUrl+originParamater+origin+destinationParameter+destination+googleMatrixApiKey+departureTime, CarTravelResponseDto.class);
-        System.out.println("response " + responseEntity);
         CarTravelResponseDto carTravelResponse = responseEntity.getBody();
       return carTravelResponse;
     }

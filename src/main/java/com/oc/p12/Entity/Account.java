@@ -29,7 +29,7 @@ public class Account {
     private Adress adress;
 
     @Column(name = "departure_time")
-    private LocalTime departureTime;
+    private String departureTime;
 
     public Account() {
     }
@@ -74,11 +74,11 @@ public class Account {
         this.adress = adress;
     }
 
-    public LocalTime getDepartureTime() {
+    public String getDepartureTime() {
         return departureTime;
     }
 
-    public void setDepartureTime(LocalTime departureTime) {
+    public void setDepartureTime(String departureTime) {
         this.departureTime = departureTime;
     }
 

@@ -24,4 +24,6 @@ public class WeatherController {
     public void fetchingDatas(){
         weatherService.fetchWeatherDatas();
     }
+
+
 }
