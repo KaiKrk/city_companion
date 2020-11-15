@@ -10,6 +10,7 @@ public class AdressDto {
     public String streetName;
     public String city;
     public int postalCode;
+    public boolean isHomeAdress;
 
     public AdressDto() {
     }

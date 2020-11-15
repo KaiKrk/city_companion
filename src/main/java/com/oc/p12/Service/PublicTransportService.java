@@ -3,6 +3,7 @@ package com.oc.p12.Service;
 import com.oc.p12.Bean.Dto.PublicTransport.PublicTransportTravelDto;
 import com.oc.p12.Bean.Dto.PublicTransport.Schedule.PublicTransportScheduleDto;
 import com.oc.p12.Bean.Dto.PublicTransport.Schedule.PublicTransportScheduleResponse;
+import com.oc.p12.Bean.Dto.PublicTransport.Stations.PublicTransportStationsResponse;
 import com.oc.p12.Bean.Dto.PublicTransport.Traffic.TrafficInfo;
 import com.oc.p12.Bean.Dto.PublicTransport.Traffic.TrafficInfoResponse;
 import com.oc.p12.Entity.Account;
@@ -50,6 +51,12 @@ public class PublicTransportService {
 
         ResponseEntity<TrafficInfoResponse> trafficInfo = restTemplate.getForEntity(publicTransportApiUrl+"/traffic/"+transportType+"/"+line, TrafficInfoResponse.class);
         savePublicTransportTraffic(new PublicTransportTraffic(trafficInfo.getBody().getResult()));
+        return trafficInfo.getBody();
+    }
+
+    public PublicTransportStationsResponse getLineStations(String transportType , String line){
+
+        ResponseEntity<PublicTransportStationsResponse> trafficInfo = restTemplate.getForEntity(publicTransportApiUrl+"/stations/"+transportType+"/"+line, PublicTransportStationsResponse.class);
         return trafficInfo.getBody();
     }
 

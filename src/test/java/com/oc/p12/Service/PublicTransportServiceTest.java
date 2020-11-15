@@ -1,6 +1,7 @@
 package com.oc.p12.Service;
 
 import com.oc.p12.Bean.Dto.PublicTransport.Schedule.PublicTransportScheduleResponse;
+import com.oc.p12.Bean.Dto.PublicTransport.Stations.PublicTransportStationsResponse;
 import com.oc.p12.Bean.Dto.PublicTransport.Traffic.TrafficInfoResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,16 @@ public class PublicTransportServiceTest {
         PublicTransportScheduleResponse publicTransportScheduleResponse = publicTransportService.fetchTrafficSchedule(transportType,line,station);
         System.out.println(publicTransportScheduleResponse);
         assertThat(publicTransportScheduleResponse.getResult().getSchedules()!= null);
+    }
+
+    @Test
+    public void getLineStations(){
+        String transportType = "buses";
+
+        String line = "84";
+
+        PublicTransportStationsResponse publicTransportStationsResponse = publicTransportService.getLineStations(transportType,line);
+        System.out.println(publicTransportStationsResponse);
+        assertThat(publicTransportStationsResponse.getResult().getStations()!= null);
     }
 }
