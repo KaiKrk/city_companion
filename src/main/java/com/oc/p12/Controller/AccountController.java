@@ -2,6 +2,7 @@ package com.oc.p12.Controller;
 
 import com.oc.p12.Bean.Dto.Account.AccountDto;
 import com.oc.p12.Bean.Dto.Account.AccountRequest;
+import com.oc.p12.Bean.Dto.RegistrationDto;
 import com.oc.p12.Entity.Account;
 import com.oc.p12.Repository.AccountRepository;
 import com.oc.p12.Service.AccountService;
@@ -27,9 +28,9 @@ public class AccountController {
     private PasswordEncoder passwordEncoder;
 
     @PostMapping("/saveAccount")
-    public ResponseEntity<AccountDto> saveAccount(@RequestBody Account account){
-        AccountDto accountDto = accountService.save(account);
-        return new ResponseEntity<>(accountDto, HttpStatus.OK);
+    public ResponseEntity<RegistrationDto> saveAccount(@RequestBody RegistrationDto registrationDto){
+        System.out.println(registrationDto);
+        return new ResponseEntity<>(new RegistrationDto(), HttpStatus.OK);
     }
 
     @GetMapping("/myAccount")

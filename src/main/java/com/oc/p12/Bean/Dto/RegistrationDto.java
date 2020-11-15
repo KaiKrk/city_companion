@@ -44,4 +44,14 @@ public class RegistrationDto {
     public void setTransportRegistrationDto(TransportRegistrationDto transportRegistrationDto) {
         this.transportRegistrationDto = transportRegistrationDto;
     }
+
+    @Override
+    public String toString() {
+        return "RegistrationDto{" +
+                "account=" + account +
+                ", homeAdress=" + homeAdress +
+                ", workAdress=" + workAdress +
+                ", transportRegistrationDto=" + transportRegistrationDto +
+                '}';
+    }
 }
