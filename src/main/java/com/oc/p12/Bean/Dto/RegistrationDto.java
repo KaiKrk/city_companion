@@ -7,11 +7,11 @@ public class RegistrationDto {
 
     public Account account;
 
-    public AdressDto homeAdress;
+    public AdressDto homeAddress;
 
-    public AdressDto workAdress;
+    public AdressDto workAddress;
 
-    public TransportRegistrationDto transportRegistrationDto;
+    public TransportRegistrationDto transport;
 
     public Account getAccount() {
         return account;
@@ -22,36 +22,36 @@ public class RegistrationDto {
     }
 
     public AdressDto getHomeAdress() {
-        return homeAdress;
+        return homeAddress;
     }
 
     public void setHomeAdress(AdressDto homeAdress) {
-        this.homeAdress = homeAdress;
+        this.homeAddress = homeAdress;
     }
 
     public AdressDto getWorkAdress() {
-        return workAdress;
+        return workAddress;
     }
 
     public void setWorkAdress(AdressDto workAdress) {
-        this.workAdress = workAdress;
+        this.workAddress = workAdress;
     }
 
     public TransportRegistrationDto getTransportRegistrationDto() {
-        return transportRegistrationDto;
+        return transport;
     }
 
     public void setTransportRegistrationDto(TransportRegistrationDto transportRegistrationDto) {
-        this.transportRegistrationDto = transportRegistrationDto;
+        this.transport = transportRegistrationDto;
     }
 
     @Override
     public String toString() {
         return "RegistrationDto{" +
                 "account=" + account +
-                ", homeAdress=" + homeAdress +
-                ", workAdress=" + workAdress +
-                ", transportRegistrationDto=" + transportRegistrationDto +
+                ", homeAdress=" + homeAddress +
+                ", workAdress=" + workAddress +
+                ", transportRegistrationDto=" + transport +
                 '}';
     }
 }

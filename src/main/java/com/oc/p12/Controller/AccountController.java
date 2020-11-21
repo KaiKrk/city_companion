@@ -24,8 +24,7 @@ public class AccountController {
 
     @Autowired
     AccountService accountService;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+
 
     @PostMapping("/saveAccount")
     public ResponseEntity<RegistrationDto> saveAccount(@RequestBody RegistrationDto registrationDto){
