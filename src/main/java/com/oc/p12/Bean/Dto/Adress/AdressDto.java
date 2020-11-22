@@ -53,4 +53,15 @@ public class AdressDto {
     public void setPostalCode(int postalCode) {
         this.postalCode = postalCode;
     }
+
+    @Override
+    public String toString() {
+        return "AdressDto{" +
+                "streetNumber='" + streetNumber + '\'' +
+                ", streetName='" + streetName + '\'' +
+                ", city='" + city + '\'' +
+                ", postalCode=" + postalCode +
+                ", isHomeAdress=" + isHomeAdress +
+                '}';
+    }
 }
