@@ -8,8 +8,6 @@ import javax.mail.*;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.awt.print.Book;
-import java.util.Date;
 import java.util.Properties;
 
 @Service
@@ -46,7 +44,6 @@ public class EmailService {
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
             message.setSubject(mailDetails.getSubject());
-            message.setText(mailDetails.getCityCompanionMessage());
             return message;
         } catch (AddressException e) {
             e.printStackTrace();
