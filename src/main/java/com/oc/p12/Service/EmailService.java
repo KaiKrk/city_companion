@@ -14,24 +14,38 @@ import java.util.Properties;
 public class EmailService {
     MailDetails mailDetails = new MailDetails();
 
-    public void sendEmailForPickup(String email) throws Exception {
 
-
+    public Properties getProperties (){
         Properties properties = new Properties();
-
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.port", "587");
-        System.out.println(" email : " + mailDetails.getMyAccountEmail() + "  " + mailDetails.getPassword());
+        return properties;
+    }
 
-        Session session = Session.getInstance(properties, new Authenticator() {
+    public Session getSession(){
+        Session session = Session.getInstance(getProperties(), new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(mailDetails.getMyAccountEmail(), mailDetails.getPassword());
             }
         });
-        Message message = prepareMessage(session, mailDetails.getMyAccountEmail(), email);
+        return session;
+    }
+
+    public void sendAccountCreationSuccessMail(String email) throws Exception {
+
+        Message message = prepareMessage(getSession(), mailDetails.getMyAccountEmail(), email);
+        System.out.println(message);
+        Transport.send(message);
+
+    }
+
+    public void sendEmailDailyInformations(String email) throws Exception {
+
+        System.out.println(" email : " + mailDetails.getMyAccountEmail() + "  " + mailDetails.getPassword());
+        Message message = prepareMessage(getSession(), mailDetails.getMyAccountEmail(), email);
         System.out.println(message);
         Transport.send(message);
 

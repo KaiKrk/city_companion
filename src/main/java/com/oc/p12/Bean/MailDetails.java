@@ -11,7 +11,9 @@ public class MailDetails {
 
     private String subject = "Indicateur du jour";
 
+    private String accountCreationSubject = " Bienvenue chez City Companion";
 
+    private String accountCreationMessage = " Nous vous confirmons que votre compte a bien été crée avec succès";
 
 
 
