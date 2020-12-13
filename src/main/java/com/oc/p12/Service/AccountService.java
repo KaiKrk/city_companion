@@ -1,6 +1,9 @@
 package com.oc.p12.Service;
 
 import com.oc.p12.Bean.Dto.Account.AccountDto;
+import com.oc.p12.Bean.Dto.Adress.AdressDto;
+import com.oc.p12.Bean.Dto.RegistrationDto;
+import com.oc.p12.Bean.Dto.TransportRegistrationDto;
 import com.oc.p12.Entity.Account;
 import com.oc.p12.Repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AccountService {
@@ -18,8 +22,11 @@ public class AccountService {
     @Autowired
     AccountRepository accountRepository;
 
+    @Autowired
+    PublicTransportService publicTransportService;
+
     public Account findById(int id){
-        Account account = accountRepository.findByAccountId(id);
+        Account account = accountRepository.findById(id);
         return  account;
     }
 
@@ -30,12 +37,18 @@ public class AccountService {
         return new AccountDto(accountRepository.save(account));
     }
 
-    public void delete(int accountId){
-        accountRepository.delete(accountRepository.findByAccountId(accountId));
+    public RegistrationDto getMemberInfo(Integer id){
+        RegistrationDto dto = new RegistrationDto();
+        Account account = findById(id);
+        dto.setAccount(account);
+        dto.setHomeAdress(new AdressDto(account.getAdress()));
+        dto.setWorkAdress(new AdressDto(account.getWorkAdress()));
+        dto.setTransportRegistrationDto(new TransportRegistrationDto(publicTransportService.getPublicTransportTravelInfo(account)));
+        return dto;
     }
 
-    public List<Account> findAccountByListIdAccount(List<Integer> idAccounts){
-      return  accountRepository.findAccountByAccountIdIn(idAccounts);
+    public void delete(int accountId){
+        accountRepository.delete(accountRepository.findById(accountId));
     }
 
     public List<Account> getAccountByDepartureTime(String time){

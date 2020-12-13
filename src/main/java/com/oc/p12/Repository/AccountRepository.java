@@ -9,11 +9,9 @@ import java.util.List;
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Integer> {
 
-    Account findByAccountId(int id);
+    Account findById(int id);
 
     Account findByEmail(String email);
-
-    List<Account> findAccountByAccountIdIn(List<Integer> idAccounts);
 
     List<Account> findAccountByDepartureTime(String time);
 

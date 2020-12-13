@@ -73,6 +73,10 @@ public class PublicTransportService {
     public PublicTransportTravelDto getPublicTransportTravel(Account account){
         return new PublicTransportTravelDto(publicTransportTravelRepository.findByAccount(account));
     }
+    public PublicTransportTravel getPublicTransportTravelInfo(Account account){
+        return publicTransportTravelRepository.findByAccount(account);
+    }
+
 
     public List<PublicTransportTravel> getPublicTransportTravelsByAccountIn(List<Account> accounts){
      return publicTransportTravelRepository.findPublicTransportTravelsByAccountIn(accounts);

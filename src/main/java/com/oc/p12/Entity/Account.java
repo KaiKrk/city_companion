@@ -10,7 +10,7 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "account_id")
-    private int accountId;
+    private int id;
 
     @Column(name = "email")
     private String email;
@@ -28,18 +28,38 @@ public class Account {
     @JoinColumn(name = "adress_id", referencedColumnName = "adress_id")
     private Adress adress;
 
+    @OneToOne
+    @JoinColumn(name = "work_adress_id", referencedColumnName = "adress_id")
+    private Adress workAdress;
+
     @Column(name = "departure_time")
     private String departureTime;
 
     public Account() {
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Adress getWorkAdress() {
+        return workAdress;
+    }
+
+    public void setWorkAdress(Adress workAdress) {
+        this.workAdress = workAdress;
+    }
+
     public int getAccountId() {
-        return accountId;
+        return id;
     }
 
     public void setAccountId(int account_id) {
-        this.accountId = account_id;
+        this.id = account_id;
     }
 
     public String getEmail() {
@@ -93,7 +113,7 @@ public class Account {
     @Override
     public String toString() {
         return "Account{" +
-                "accountId=" + accountId +
+                "accountId=" + id +
                 ", email='" + email + '\'' +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +

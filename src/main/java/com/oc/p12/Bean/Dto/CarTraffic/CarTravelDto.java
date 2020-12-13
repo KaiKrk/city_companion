@@ -17,8 +17,6 @@ public class CarTravelDto {
         this.distance = carTravel.getDistanceToWork();
         this.estimatedTravelTime = carTravel.getNormalTravelTimeToWork();
         this.realTimeTravelTime = carTravel.getRealTimeTravelTimeToWork();
-
-
     }
 
     public String getDistance() {

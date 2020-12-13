@@ -9,8 +9,9 @@ import com.oc.p12.Service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import javax.xml.ws.Response;
 
 @CrossOrigin("http://localhost:4200")
 @RestController
@@ -38,7 +39,13 @@ public class AccountController {
 
     @GetMapping("/myAccount")
     public ResponseEntity<AccountDto> getAccount(@RequestBody AccountRequest accountRequest){
-        AccountDto accountDto = new AccountDto(accountRepository.findByAccountId(accountRequest.getId()));
+        AccountDto accountDto = new AccountDto(accountRepository.findById(accountRequest.getId()));
         return new ResponseEntity<>(accountDto,HttpStatus.OK);
+    }
+
+    @GetMapping("/account")
+    public ResponseEntity<RegistrationDto> getAccountInfo(@RequestParam Integer id){
+        RegistrationDto dto = accountService.getMemberInfo(id);
+        return new ResponseEntity<>(dto,HttpStatus.OK);
     }
 }

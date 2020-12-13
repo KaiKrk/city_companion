@@ -48,7 +48,7 @@ public class AdressController {
 
     @GetMapping("/homeAdress")
     public ResponseEntity<AdressDto> getHomeAdress(@RequestBody AdressRequest adressRequest){
-        AdressDto adressDto =  new AdressDto(adressRepository.findByAccount(accountRepository.findByAccountId(adressRequest.getAccountId())));
+        AdressDto adressDto =  new AdressDto(adressRepository.findByAccount(accountRepository.findById(adressRequest.getAccountId())));
         return  new ResponseEntity<>(adressDto, HttpStatus.OK);
     }
 

@@ -29,6 +29,9 @@ public class Adress {
     @Column(name = "postal_code")
     public int postalCode;
 
+    @Column(name = "is_home_adress")
+    public boolean isHomeAdress;
+
     public Adress() {
     }
 
