@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.xml.ws.Response;
 
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("*")
 @RestController
 public class AccountController {
 
@@ -46,6 +46,7 @@ public class AccountController {
     @GetMapping("/account")
     public ResponseEntity<RegistrationDto> getAccountInfo(@RequestParam Integer id){
         RegistrationDto dto = accountService.getMemberInfo(id);
+        System.out.println(dto);
         return new ResponseEntity<>(dto,HttpStatus.OK);
     }
 }

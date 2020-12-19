@@ -32,6 +32,14 @@ public class Adress {
     @Column(name = "is_home_adress")
     public boolean isHomeAdress;
 
+    public boolean isHomeAdress() {
+        return isHomeAdress;
+    }
+
+    public void setHomeAdress(boolean homeAdress) {
+        isHomeAdress = homeAdress;
+    }
+
     public Adress() {
     }
 

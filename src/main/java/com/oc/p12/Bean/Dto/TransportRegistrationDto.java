@@ -7,6 +7,9 @@ public class TransportRegistrationDto {
     public String transportLine;
     public String departureStop;
 
+    public TransportRegistrationDto() {
+    }
+
     public TransportRegistrationDto(PublicTransportTravel transport) {
         this.transport =  transport.getTransportType().toString();
         this.transportLine = transport.getTransportLine();
