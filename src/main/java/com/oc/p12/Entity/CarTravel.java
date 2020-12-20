@@ -1,6 +1,5 @@
 package com.oc.p12.Entity;
 
-import com.oc.p12.Bean.Dto.CarTraffic.CarTravelDto;
 import com.oc.p12.Bean.Dto.CarTraffic.CarTravelResponseDto;
 
 import javax.persistence.*;
@@ -25,14 +24,14 @@ public class CarTravel {
 
     @ManyToOne
     @JoinColumn(name = "car_journey_info", referencedColumnName = "car_journey_info_id")
-    private CarTravelInfo carTravelInfo;
+    private TransportInfo transportInfo;
 
 
 
     public CarTravel() {
     }
 
-    public CarTravel (CarTravelResponseDto response, CarTravelInfo carTravelInfo){
+    public CarTravel (CarTravelResponseDto response, TransportInfo transportInfo){
         this.distanceToWork = response.getRows().get(1).getElements().get(1).getDistance().getText();
         this.normalTravelTimeToWork = response.getRows().get(1).getElements().get(1).getDuration().getText();
         this.realTimeTravelTimeToWork = response.getRows().get(1).getElements().get(1).getDurationInTraffic().getText();
@@ -70,11 +69,11 @@ public class CarTravel {
         this.realTimeTravelTimeToWork = realTimeTravelTimeToWork;
     }
 
-    public CarTravelInfo getCarTravelInfo() {
-        return carTravelInfo;
+    public TransportInfo getTransportInfo() {
+        return transportInfo;
     }
 
-    public void setCarTravelInfo(CarTravelInfo carTravelInfo) {
-        this.carTravelInfo = carTravelInfo;
+    public void setTransportInfo(TransportInfo transportInfo) {
+        this.transportInfo = transportInfo;
     }
 }

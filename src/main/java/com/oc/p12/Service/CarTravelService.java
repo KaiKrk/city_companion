@@ -4,7 +4,7 @@ import com.oc.p12.Bean.Dto.CarTraffic.CarTravelDto;
 import com.oc.p12.Bean.Dto.CarTraffic.CarTravelResponseDto;
 import com.oc.p12.Entity.Account;
 import com.oc.p12.Entity.CarTravel;
-import com.oc.p12.Entity.CarTravelInfo;
+import com.oc.p12.Entity.TransportInfo;
 import com.oc.p12.Repository.CarTravelInfoRepository;
 import com.oc.p12.Repository.CarTravelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,17 +38,17 @@ public class CarTravelService {
       return carTravelResponse;
     }
 
-    public CarTravelDto fetchRealTimeTrafficByAccount(CarTravelInfo carTravelInfo){
-        CarTravelResponseDto actualTraffic = getTraficInformation(carTravelInfo.getAccount().getAdress().getAdressToString(), carTravelInfo.getWorkAdress().getAdressToString());
-        CarTravel carTravel = new CarTravel(actualTraffic, carTravelInfo);
+    public CarTravelDto fetchRealTimeTrafficByAccount(TransportInfo transportInfo){
+        CarTravelResponseDto actualTraffic = getTraficInformation(transportInfo.getAccount().getAdress().getAdressToString(), transportInfo.getAccount().getWorkAdress().getAdressToString());
+        CarTravel carTravel = new CarTravel(actualTraffic, transportInfo);
         return new CarTravelDto( carTravelRepository.save(carTravel));
     }
 
-    public CarTravelInfo saveCarTravelInfo(CarTravelInfo carTravelInfo){
-        return carTravelInfoRepository.save(carTravelInfo);
+    public TransportInfo saveCarTravelInfo(TransportInfo transportInfo){
+        return carTravelInfoRepository.save(transportInfo);
     }
 
-    public CarTravelInfo findCarTravelInfoByAccount(Account account){
+    public TransportInfo findCarTravelInfoByAccount(Account account){
         return carTravelInfoRepository.findByAccount(account);
     }
 
@@ -56,7 +56,7 @@ public class CarTravelService {
         return new CarTravelDto(carTravel);
     }
 
-    public CarTravel getCarTravelByCarTravelInfo(CarTravelInfo carTravelInfo){
-        return carTravelRepository.findByCarTravelInfo(carTravelInfo);
+    public CarTravel getCarTravelByCarTravelInfo(TransportInfo transportInfo){
+        return carTravelRepository.findByCarTravelInfo(transportInfo);
     }
 }

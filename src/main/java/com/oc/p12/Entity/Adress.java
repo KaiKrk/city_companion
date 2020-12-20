@@ -1,5 +1,7 @@
 package com.oc.p12.Entity;
 
+import com.oc.p12.Bean.Dto.Adress.AdressDto;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,12 +12,6 @@ public class Adress {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "adress_id")
     private int id;
-
-    @OneToOne(mappedBy = "adress")
-    private Account account;
-
-    @OneToOne(mappedBy = "workAdress")
-    private CarTravelInfo carTravel;
 
     @Column(name = "house_number")
     public String streetNumber;
@@ -43,6 +39,14 @@ public class Adress {
     public Adress() {
     }
 
+    public Adress(AdressDto dto) {
+        this.streetNumber = dto.getStreetNumber();
+        this.streetName = dto.getStreetName();
+        this.city = dto.getCity();
+        this.postalCode = dto.getPostalCode();
+        this.isHomeAdress = dto.isHomeAddress;
+    }
+
     public String getAdressToString(){
         return streetNumber+" "+streetName+" "+postalCode+" "+city;
     }
@@ -55,21 +59,6 @@ public class Adress {
         this.id = id;
     }
 
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-
-    public CarTravelInfo getCarTravel() {
-        return carTravel;
-    }
-
-    public void setCarTravel(CarTravelInfo carTravel) {
-        this.carTravel = carTravel;
-    }
 
     public String getStreetNumber() {
         return streetNumber;

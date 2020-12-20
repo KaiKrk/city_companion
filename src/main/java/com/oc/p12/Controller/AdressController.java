@@ -4,8 +4,6 @@ import com.oc.p12.Bean.Dto.Adress.AdressDto;
 import com.oc.p12.Bean.Dto.Adress.AdressRequest;
 import com.oc.p12.Entity.Account;
 import com.oc.p12.Entity.Adress;
-import com.oc.p12.Entity.CarTravel;
-import com.oc.p12.Entity.CarTravelInfo;
 import com.oc.p12.Repository.AccountRepository;
 import com.oc.p12.Repository.AdressRepository;
 import com.oc.p12.Repository.CarTravelRepository;
@@ -15,8 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.xml.ws.Response;
 
 @CrossOrigin("http://localhost:4200")
 @RestController

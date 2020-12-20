@@ -5,6 +5,8 @@ import com.oc.p12.Bean.Dto.Adress.AdressDto;
 import com.oc.p12.Bean.Dto.RegistrationDto;
 import com.oc.p12.Bean.Dto.TransportRegistrationDto;
 import com.oc.p12.Entity.Account;
+import com.oc.p12.Entity.Adress;
+import com.oc.p12.Entity.TransportInfo;
 import com.oc.p12.Repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,9 +27,23 @@ public class AccountService {
     @Autowired
     PublicTransportService publicTransportService;
 
+    @Autowired
+    AdressService adressService;
+
+    @Autowired
+    TransportInfoService transportInfoService;
+
     public Account findById(int id){
         Account account = accountRepository.findById(id);
         return  account;
+    }
+
+    public AccountDto registration(RegistrationDto dto){
+        dto.getAccount().setPassword(passwordEncoder.encode( dto.getAccount().getPassword()));
+        adressService.save(new Adress(dto.getHomeAdress()));
+        adressService.save(new Adress(dto.getWorkAdress()));
+        transportInfoService.save(new TransportInfo(dto.getTransportRegistrationDto()));
+        return new AccountDto(accountRepository.save(dto.getAccount()));
     }
 
 
@@ -36,6 +52,7 @@ public class AccountService {
         account.setPassword(passwordEncoder.encode(account.getPassword()));
         return new AccountDto(accountRepository.save(account));
     }
+
 
     public RegistrationDto getMemberInfo(Integer id){
         RegistrationDto dto = new RegistrationDto();

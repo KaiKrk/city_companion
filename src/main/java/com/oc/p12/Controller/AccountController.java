@@ -4,8 +4,11 @@ import com.oc.p12.Bean.Dto.Account.AccountDto;
 import com.oc.p12.Bean.Dto.Account.AccountRequest;
 import com.oc.p12.Bean.Dto.RegistrationDto;
 import com.oc.p12.Entity.Account;
+import com.oc.p12.Entity.TransportInfo;
 import com.oc.p12.Repository.AccountRepository;
 import com.oc.p12.Service.AccountService;
+import com.oc.p12.Service.AdressService;
+import com.oc.p12.Service.TransportInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +26,12 @@ public class AccountController {
 
     @Autowired
     AccountService accountService;
+
+    @Autowired
+    AdressService adressService;
+
+    @Autowired
+    TransportInfoService transportInfoService;
 
 
     @PostMapping("/saveAccount")

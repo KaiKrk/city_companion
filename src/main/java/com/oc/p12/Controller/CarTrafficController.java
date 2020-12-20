@@ -5,7 +5,7 @@ import com.oc.p12.Bean.Dto.Adress.AdressRequest;
 import com.oc.p12.Bean.Dto.CarTraffic.CarTravelDto;
 import com.oc.p12.Entity.Adress;
 import com.oc.p12.Entity.CarTravel;
-import com.oc.p12.Entity.CarTravelInfo;
+import com.oc.p12.Entity.TransportInfo;
 import com.oc.p12.Service.AccountService;
 import com.oc.p12.Service.AdressService;
 import com.oc.p12.Service.CarTravelService;
@@ -13,8 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.xml.ws.Response;
 
 @CrossOrigin("http://localhost:4200")
 @RestController
@@ -35,29 +33,29 @@ public class CarTrafficController {
     }
 
     @PostMapping("/saveCarTravelInfo")
-    public ResponseEntity<CarTravelInfo> saveCarTravelInfo(AdressRequest adressRequest, Adress workAdress){
+    public ResponseEntity<TransportInfo> saveCarTravelInfo(AdressRequest adressRequest, Adress workAdress){
         Adress newAdress = adressService.save(workAdress);
-        CarTravelInfo newCarTravelInfo = new CarTravelInfo(accountService.findById(adressRequest.getCarTravelId()), newAdress);
-        carTravelService.saveCarTravelInfo(newCarTravelInfo);
-        return new ResponseEntity<>(newCarTravelInfo, HttpStatus.OK);
+        TransportInfo newTransportInfo = new TransportInfo(accountService.findById(adressRequest.getCarTravelId()), newAdress);
+        carTravelService.saveCarTravelInfo(newTransportInfo);
+        return new ResponseEntity<>(newTransportInfo, HttpStatus.OK);
     }
 
     @PostMapping("/car/info")
-    public ResponseEntity<CarTravelInfo> getCarTravelInfo(@RequestBody AccountRequest accountRequest){
-        CarTravelInfo carTravelInfo = carTravelService.findCarTravelInfoByAccount(accountService.findById(accountRequest.getId()));
-        return new ResponseEntity<>(carTravelInfo, HttpStatus.OK);
+    public ResponseEntity<TransportInfo> getCarTravelInfo(@RequestBody AccountRequest accountRequest){
+        TransportInfo transportInfo = carTravelService.findCarTravelInfoByAccount(accountService.findById(accountRequest.getId()));
+        return new ResponseEntity<>(transportInfo, HttpStatus.OK);
     }
 
     @PostMapping("/traffic")
-    public ResponseEntity<CarTravelDto> getRealTimeCarTravelByMember(@RequestBody CarTravelInfo carTravelInfo){
-        CarTravelDto carTravelDto = new CarTravelDto(carTravelService.getCarTravelByCarTravelInfo(carTravelInfo));
+    public ResponseEntity<CarTravelDto> getRealTimeCarTravelByMember(@RequestBody TransportInfo transportInfo){
+        CarTravelDto carTravelDto = new CarTravelDto(carTravelService.getCarTravelByCarTravelInfo(transportInfo));
         return new ResponseEntity<>(carTravelDto, HttpStatus.OK);
     }
 
     @PostMapping("/traffic/now")
     public ResponseEntity fetchRealtimeTraffic(@RequestBody AccountRequest accountRequest){
-        CarTravelInfo carTravelInfo = carTravelService.findCarTravelInfoByAccount(accountService.findById(accountRequest.getId()));
-        carTravelService.fetchRealTimeTrafficByAccount(carTravelInfo);
+        TransportInfo transportInfo = carTravelService.findCarTravelInfoByAccount(accountService.findById(accountRequest.getId()));
+        carTravelService.fetchRealTimeTrafficByAccount(transportInfo);
         return new ResponseEntity(HttpStatus.OK);
     }
 }

@@ -10,7 +10,7 @@ public class AdressDto {
     public String streetName;
     public String city;
     public int postalCode;
-    public boolean isHomeAdress;
+    public boolean isHomeAddress;
 
     public AdressDto() {
     }
@@ -20,6 +20,7 @@ public class AdressDto {
         this.streetName = adress.getStreetName();
         this.city = adress.getCity();
         this.postalCode = adress.getPostalCode();
+        this.isHomeAddress =  adress.isHomeAdress();
     }
 
     public String getStreetNumber() {
@@ -61,7 +62,15 @@ public class AdressDto {
                 ", streetName='" + streetName + '\'' +
                 ", city='" + city + '\'' +
                 ", postalCode=" + postalCode +
-                ", isHomeAdress=" + isHomeAdress +
+                ", isHomeAdress=" + isHomeAddress +
                 '}';
+    }
+
+    public boolean isHomeAdress() {
+        return isHomeAddress;
+    }
+
+    public void setHomeAdress(boolean homeAdress) {
+        isHomeAddress = homeAdress;
     }
 }
