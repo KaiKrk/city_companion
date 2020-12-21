@@ -1,5 +1,7 @@
 package com.oc.p12.Entity;
 
+import com.oc.p12.Bean.Dto.Account.AccountDto;
+
 import javax.persistence.*;
 import java.time.LocalTime;
 

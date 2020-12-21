@@ -36,6 +36,13 @@ public class TransportInfo {
         this.departureStop = dto.getDepartureStop();
     }
 
+    public TransportInfo(TransportRegistrationDto dto, Account account) {
+        this.transportType = dto.getTransport();
+        this.transportLine = dto.getTransportLine();
+        this.departureStop = dto.getDepartureStop();
+        this.account = account;
+    }
+
     public TransportInfo(Account account, Adress workAdress){
         this.account = account;
     }

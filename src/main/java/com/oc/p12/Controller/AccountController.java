@@ -37,6 +37,7 @@ public class AccountController {
     @PostMapping("/saveAccount")
     public ResponseEntity<RegistrationDto> saveAccount(@RequestBody RegistrationDto registrationDto){
         System.out.println(registrationDto);
+        accountService.registration(registrationDto);
         return new ResponseEntity<>(new RegistrationDto(), HttpStatus.OK);
     }
 

@@ -40,9 +40,12 @@ public class AccountService {
 
     public AccountDto registration(RegistrationDto dto){
         dto.getAccount().setPassword(passwordEncoder.encode( dto.getAccount().getPassword()));
-        adressService.save(new Adress(dto.getHomeAdress()));
+
         adressService.save(new Adress(dto.getWorkAdress()));
-        transportInfoService.save(new TransportInfo(dto.getTransportRegistrationDto()));
+        dto.getAccount().setAdress( adressService.save(new Adress(dto.getHomeAdress())));
+        dto.getAccount().setWorkAdress(( adressService.save(new Adress(dto.getWorkAdress()))));
+        Account account = accountRepository.save(dto.getAccount());
+        transportInfoService.save(new TransportInfo(dto.getTransportRegistrationDto(), account));
         return new AccountDto(accountRepository.save(dto.getAccount()));
     }
 
