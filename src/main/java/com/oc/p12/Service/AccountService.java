@@ -63,7 +63,7 @@ public class AccountService {
         dto.setAccount(account);
         dto.setHomeAdress(new AdressDto(account.getAdress()));
         dto.setWorkAdress(new AdressDto(account.getWorkAdress()));
-        dto.setTransportRegistrationDto(new TransportRegistrationDto(publicTransportService.getPublicTransportTravelInfo(account)));
+        dto.setTransportRegistrationDto(new TransportRegistrationDto(transportInfoService.findByAccount(account)));
         return dto;
     }
 

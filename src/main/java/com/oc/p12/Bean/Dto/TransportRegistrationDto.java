@@ -1,6 +1,8 @@
 package com.oc.p12.Bean.Dto;
 
 import com.oc.p12.Entity.PublicTransportTravel;
+import com.oc.p12.Entity.TransportInfo;
+import sun.rmi.transport.Transport;
 
 public class TransportRegistrationDto {
     public String transport;
@@ -10,10 +12,11 @@ public class TransportRegistrationDto {
     public TransportRegistrationDto() {
     }
 
-    public TransportRegistrationDto(PublicTransportTravel transport) {
+    public TransportRegistrationDto(TransportInfo transport) {
+        System.out.println(transport);
         this.transport =  transport.getTransportType().toString();
         this.transportLine = transport.getTransportLine();
-        this.departureStop = transport.getStation();
+        this.departureStop = transport.getDepartureStop();
 
     }
 

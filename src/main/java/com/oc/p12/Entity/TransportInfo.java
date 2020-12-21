@@ -62,4 +62,27 @@ public class TransportInfo {
         this.account = account;
     }
 
+    public String getTransportType() {
+        return transportType;
+    }
+
+    public void setTransportType(String transportType) {
+        this.transportType = transportType;
+    }
+
+    public String getTransportLine() {
+        return transportLine;
+    }
+
+    public void setTransportLine(String transportLine) {
+        this.transportLine = transportLine;
+    }
+
+    public String getDepartureStop() {
+        return departureStop;
+    }
+
+    public void setDepartureStop(String departureStop) {
+        this.departureStop = departureStop;
+    }
 }

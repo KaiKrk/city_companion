@@ -63,6 +63,17 @@ public class PublicTransportTravel {
         this.account = account;
     }
 
+    @Override
+    public String toString() {
+        return "PublicTransportTravel{" +
+                "id=" + id +
+                ", transportLine='" + transportLine + '\'' +
+                ", station='" + station + '\'' +
+                ", transportType=" + transportType +
+                ", account=" + account +
+                '}';
+    }
+
     public String getStation() {
         return station;
 
