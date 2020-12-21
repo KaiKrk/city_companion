@@ -23,7 +23,7 @@ public class CarTravel {
     private String realTimeTravelTimeToWork;
 
     @ManyToOne
-    @JoinColumn(name = "car_journey_info", referencedColumnName = "car_journey_info_id")
+    @JoinColumn(name = "transport_info", referencedColumnName = "transport_info_id")
     private TransportInfo transportInfo;
 
 

@@ -8,5 +8,5 @@ public interface CarTravelRepository extends JpaRepository<CarTravel, Integer> {
 
     public CarTravel findById(int id);
 
-    public CarTravel findByCarTravelInfo(TransportInfo transportInfo);
+    public CarTravel findByTransportInfo(TransportInfo transportInfo);
 }

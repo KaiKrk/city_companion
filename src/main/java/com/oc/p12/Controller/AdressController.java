@@ -44,13 +44,13 @@ public class AdressController {
 
     @GetMapping("/homeAdress")
     public ResponseEntity<AdressDto> getHomeAdress(@RequestBody AdressRequest adressRequest){
-        AdressDto adressDto =  new AdressDto(adressRepository.findByAccount(accountRepository.findById(adressRequest.getAccountId())));
+        AdressDto adressDto =  new AdressDto(accountRepository.findById(adressRequest.getAccountId()).getAdress());
         return  new ResponseEntity<>(adressDto, HttpStatus.OK);
     }
 
     @GetMapping("/workAdress")
     public ResponseEntity<AdressDto> getWorkAdress(@RequestBody AdressRequest adressRequest){
-        AdressDto adressDto =  new AdressDto(adressRepository.findByCarTravel(carTravelRepository.findById(adressRequest.getCarTravelId())));
-        return new ResponseEntity<>(adressDto, HttpStatus.OK);
+        AdressDto adressDto =  new AdressDto(accountRepository.findById(adressRequest.getAccountId()).getWorkAdress())
+;        return new ResponseEntity<>(adressDto, HttpStatus.OK);
     }
 }

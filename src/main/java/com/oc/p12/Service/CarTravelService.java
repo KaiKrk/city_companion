@@ -57,6 +57,6 @@ public class CarTravelService {
     }
 
     public CarTravel getCarTravelByCarTravelInfo(TransportInfo transportInfo){
-        return carTravelRepository.findByCarTravelInfo(transportInfo);
+        return carTravelRepository.findByTransportInfo(transportInfo);
     }
 }
