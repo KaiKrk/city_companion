@@ -1,6 +1,7 @@
 package com.oc.p12.Service;
 
 import com.oc.p12.Bean.Dto.Account.AccountDto;
+import com.oc.p12.Bean.Dto.AccountInfoDto;
 import com.oc.p12.Bean.Dto.Adress.AdressDto;
 import com.oc.p12.Bean.Dto.RegistrationDto;
 import com.oc.p12.Bean.Dto.TransportRegistrationDto;
@@ -57,10 +58,10 @@ public class AccountService {
     }
 
 
-    public RegistrationDto getMemberInfo(Integer id){
-        RegistrationDto dto = new RegistrationDto();
+    public AccountInfoDto getMemberInfo(Integer id){
+        AccountInfoDto dto = new AccountInfoDto();
         Account account = findById(id);
-        dto.setAccount(account);
+        dto.setAccount(new AccountDto(account));
         dto.setHomeAdress(new AdressDto(account.getAdress()));
         dto.setWorkAdress(new AdressDto(account.getWorkAdress()));
         dto.setTransportRegistrationDto(new TransportRegistrationDto(transportInfoService.findByAccount(account)));

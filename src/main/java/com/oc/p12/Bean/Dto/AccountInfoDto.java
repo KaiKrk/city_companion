@@ -2,13 +2,10 @@ package com.oc.p12.Bean.Dto;
 
 import com.oc.p12.Bean.Dto.Account.AccountDto;
 import com.oc.p12.Bean.Dto.Adress.AdressDto;
-import com.oc.p12.Entity.Account;
 
-import javax.persistence.PostLoad;
+public class AccountInfoDto {
 
-public class RegistrationDto {
-
-    public Account account;
+    public AccountDto account;
 
     public AdressDto homeAddress;
 
@@ -16,11 +13,11 @@ public class RegistrationDto {
 
     public TransportRegistrationDto transport;
 
-    public Account getAccount() {
+    public AccountDto getAccount() {
         return account;
     }
 
-    public void setAccount(Account account) {
+    public void setAccount(AccountDto account) {
         this.account = account;
     }
 
@@ -50,7 +47,7 @@ public class RegistrationDto {
 
     @Override
     public String toString() {
-        return "RegistrationDto{" +
+        return "AccountInfoDto{" +
                 "account=" + account +
                 ", homeAddress=" + homeAddress +
                 ", workAddress=" + workAddress +

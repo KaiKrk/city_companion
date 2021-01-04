@@ -2,6 +2,7 @@ package com.oc.p12.Controller;
 
 import com.oc.p12.Bean.Dto.Account.AccountDto;
 import com.oc.p12.Bean.Dto.Account.AccountRequest;
+import com.oc.p12.Bean.Dto.AccountInfoDto;
 import com.oc.p12.Bean.Dto.RegistrationDto;
 import com.oc.p12.Entity.Account;
 import com.oc.p12.Entity.TransportInfo;
@@ -43,7 +44,6 @@ public class AccountController {
 
     @PostMapping("/updateAccount")
     public ResponseEntity<RegistrationDto> updateAccount(@RequestBody RegistrationDto registrationDto){
-        System.out.println(registrationDto);
         return new ResponseEntity<>(new RegistrationDto(), HttpStatus.OK);
     }
 
@@ -54,9 +54,8 @@ public class AccountController {
     }
 
     @GetMapping("/account")
-    public ResponseEntity<RegistrationDto> getAccountInfo(@RequestParam Integer id){
-        RegistrationDto dto = accountService.getMemberInfo(id);
-        System.out.println(dto);
+    public ResponseEntity<AccountInfoDto> getAccountInfo(@RequestParam Integer id){
+        AccountInfoDto dto = accountService.getMemberInfo(id);
         return new ResponseEntity<>(dto,HttpStatus.OK);
     }
 }

@@ -64,6 +64,14 @@ public class AccountDto {
         this.departureTime = departureTime;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "AccountDto{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", departureTime='" + departureTime + '\'' +
+                '}';
+    }
 }

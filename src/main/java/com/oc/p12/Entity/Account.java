@@ -115,13 +115,14 @@ public class Account {
     @Override
     public String toString() {
         return "Account{" +
-                "accountId=" + id +
+                "id=" + id +
                 ", email='" + email + '\'' +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", password='" + password + '\'' +
                 ", adress=" + adress +
-                ", departureTime=" + departureTime +
+                ", workAdress=" + workAdress +
+                ", departureTime='" + departureTime + '\'' +
                 '}';
     }
 }
