@@ -5,6 +5,7 @@ import com.oc.p12.Entity.TransportInfo;
 import sun.rmi.transport.Transport;
 
 public class TransportRegistrationDto {
+    public int id;
     public String transport;
     public String transportLine;
     public String departureStop;
@@ -12,9 +13,17 @@ public class TransportRegistrationDto {
     public TransportRegistrationDto() {
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public TransportRegistrationDto(TransportInfo transport) {
-        System.out.println(transport);
-        this.transport =  transport.getTransportType().toString();
+        this.id = transport.getId();
+        this.transport =  transport.getTransportType();
         this.transportLine = transport.getTransportLine();
         this.departureStop = transport.getDepartureStop();
 
@@ -47,7 +56,8 @@ public class TransportRegistrationDto {
     @Override
     public String toString() {
         return "TransportRegistrationDto{" +
-                "transport='" + transport + '\'' +
+                "id=" + id +
+                ", transport='" + transport + '\'' +
                 ", transportLine='" + transportLine + '\'' +
                 ", departureStop='" + departureStop + '\'' +
                 '}';

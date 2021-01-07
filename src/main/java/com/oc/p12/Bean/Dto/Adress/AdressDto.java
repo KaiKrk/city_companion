@@ -6,6 +6,7 @@ import javax.persistence.Column;
 
 public class AdressDto {
 
+    public int id;
     public String streetNumber;
     public String streetName;
     public String city;
@@ -15,7 +16,24 @@ public class AdressDto {
     public AdressDto() {
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean isHomeAddress() {
+        return isHomeAddress;
+    }
+
+    public void setHomeAddress(boolean homeAddress) {
+        isHomeAddress = homeAddress;
+    }
+
     public AdressDto(Adress adress) {
+        this.id = adress.getId();
         this.streetNumber = adress.getStreetNumber();
         this.streetName = adress.getStreetName();
         this.city = adress.getCity();
@@ -58,11 +76,12 @@ public class AdressDto {
     @Override
     public String toString() {
         return "AdressDto{" +
-                "streetNumber='" + streetNumber + '\'' +
+                "id=" + id +
+                ", streetNumber='" + streetNumber + '\'' +
                 ", streetName='" + streetName + '\'' +
                 ", city='" + city + '\'' +
                 ", postalCode=" + postalCode +
-                ", isHomeAdress=" + isHomeAddress +
+                ", isHomeAddress=" + isHomeAddress +
                 '}';
     }
 

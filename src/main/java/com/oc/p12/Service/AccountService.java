@@ -41,8 +41,6 @@ public class AccountService {
 
     public AccountDto registration(RegistrationDto dto){
         dto.getAccount().setPassword(passwordEncoder.encode( dto.getAccount().getPassword()));
-
-        adressService.save(new Adress(dto.getWorkAdress()));
         dto.getAccount().setAdress( adressService.save(new Adress(dto.getHomeAdress())));
         dto.getAccount().setWorkAdress(( adressService.save(new Adress(dto.getWorkAdress()))));
         Account account = accountRepository.save(dto.getAccount());
@@ -50,10 +48,30 @@ public class AccountService {
         return new AccountDto(accountRepository.save(dto.getAccount()));
     }
 
+    public AccountDto update(RegistrationDto dto){
+        /*adressService.save(new Adress(dto.getHomeAdress()));
+        adressService.save(new Adress(dto.getWorkAdress()));*/
+        dto.getAccount().setAdress( adressService.save(new Adress(dto.getHomeAdress())));
+        dto.getAccount().setWorkAdress(( adressService.save(new Adress(dto.getWorkAdress()))));
+        transportInfoService.save(new TransportInfo(dto.getTransportRegistrationDto()));
+        return save(dto.getAccount());
+    }
+
 
     public AccountDto save(Account account){
         System.out.println(account);
-        account.setPassword(passwordEncoder.encode(account.getPassword()));
+        if(account.getPassword().isEmpty()){
+            System.out.println("Account Updated no Pass");
+            account.setPassword(retrievePassword(account.getId()));
+            return new AccountDto(accountRepository.save(account));
+        } else {
+            System.out.println("Account Updated with Pass");
+            account.setPassword(passwordEncoder.encode(account.getPassword()));
+            return new AccountDto(accountRepository.save(account));
+        }
+    }
+
+    public AccountDto update(Account account){
         return new AccountDto(accountRepository.save(account));
     }
 
@@ -78,5 +96,9 @@ public class AccountService {
 
     public Account findAccountByEmail(String email){
       return accountRepository.findAccountByEmail(email);
+    }
+
+    public String retrievePassword(int id){
+        return findById(id).getPassword();
     }
 }

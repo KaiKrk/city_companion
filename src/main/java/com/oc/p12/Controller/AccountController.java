@@ -44,6 +44,8 @@ public class AccountController {
 
     @PostMapping("/updateAccount")
     public ResponseEntity<RegistrationDto> updateAccount(@RequestBody RegistrationDto registrationDto){
+        System.out.println(registrationDto.toString());
+        accountService.update(registrationDto);
         return new ResponseEntity<>(new RegistrationDto(), HttpStatus.OK);
     }
 

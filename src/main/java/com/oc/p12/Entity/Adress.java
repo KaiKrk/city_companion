@@ -39,7 +39,16 @@ public class Adress {
     public Adress() {
     }
 
+  /*  public Adress(AdressDto dto) {
+        this.streetNumber = dto.getStreetNumber();
+        this.streetName = dto.getStreetName();
+        this.city = dto.getCity();
+        this.postalCode = dto.getPostalCode();
+        this.isHomeAdress = dto.isHomeAddress;
+    }*/
+
     public Adress(AdressDto dto) {
+        this.id = dto.getId();
         this.streetNumber = dto.getStreetNumber();
         this.streetName = dto.getStreetName();
         this.city = dto.getCity();

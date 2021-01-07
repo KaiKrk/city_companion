@@ -40,6 +40,14 @@ public class Account {
     public Account() {
     }
 
+    public Account(AccountDto dto) {
+        this.id = dto.getId();
+        this.surname = dto.getSurname();
+        this.name = dto.getName();
+        this.email = dto.getEmail();
+        this.departureTime = dto.getDepartureTime();
+    }
+
     public int getId() {
         return id;
     }
