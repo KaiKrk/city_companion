@@ -27,7 +27,7 @@ public class ScheduleDetail {
 
     @Override
     public String toString() {
-        return "SchduleDetail{" +
+        return "ScheduleDetail{" +
                 "message='" + message + '\'' +
                 ", destination='" + destination + '\'' +
                 '}';

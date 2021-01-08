@@ -1,15 +1,13 @@
 package com.oc.p12.Service;
 
+import com.oc.p12.Bean.Dto.Dashboard.PublicTransportDashboardDTO;
 import com.oc.p12.Bean.Dto.PublicTransport.PublicTransportTravelDto;
 import com.oc.p12.Bean.Dto.PublicTransport.Schedule.PublicTransportScheduleDto;
 import com.oc.p12.Bean.Dto.PublicTransport.Schedule.PublicTransportScheduleResponse;
 import com.oc.p12.Bean.Dto.PublicTransport.Stations.PublicTransportStationsResponse;
 import com.oc.p12.Bean.Dto.PublicTransport.Traffic.TrafficInfo;
 import com.oc.p12.Bean.Dto.PublicTransport.Traffic.TrafficInfoResponse;
-import com.oc.p12.Entity.Account;
-import com.oc.p12.Entity.PublicTransportSchedule;
-import com.oc.p12.Entity.PublicTransportTraffic;
-import com.oc.p12.Entity.PublicTransportTravel;
+import com.oc.p12.Entity.*;
 import com.oc.p12.Repository.PublicTransportScheduleRepository;
 import com.oc.p12.Repository.PublicTransportTrafficRepository;
 import com.oc.p12.Repository.PublicTransportTravelRepository;
@@ -25,6 +23,9 @@ public class PublicTransportService {
 
     @Autowired
     PublicTransportTravelRepository publicTransportTravelRepository;
+
+    @Autowired
+    TransportInfoService transportInfoService;
 
     @Autowired
     PublicTransportScheduleRepository publicTransportScheduleRepository;
@@ -82,6 +83,12 @@ public class PublicTransportService {
      return publicTransportTravelRepository.findPublicTransportTravelsByAccountIn(accounts);
     }
 
+    public PublicTransportDashboardDTO getDashboardInfo(Account account){
+        TransportInfo tf = transportInfoService.findByAccount(account);
+        PublicTransportScheduleResponse publicTransportScheduleResponse = fetchTrafficSchedule(tf.getTransportType(),tf.getTransportLine(),tf.getDepartureStop());
+        TrafficInfoResponse trafficInfoResponse = fetchTrafficInformation(tf.getTransportType(),tf.getTransportLine());
+    return new PublicTransportDashboardDTO(tf,publicTransportScheduleResponse,trafficInfoResponse);
+    }
 
 
 

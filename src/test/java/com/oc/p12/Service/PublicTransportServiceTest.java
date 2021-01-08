@@ -28,9 +28,9 @@ public class PublicTransportServiceTest {
     public void getSchedule(){
         String transportType = "metros";
 
-        String line = "14";
+        String line = "8";
 
-        String station = "chatelet";
+        String station = "Liberté";
 
         PublicTransportScheduleResponse publicTransportScheduleResponse = publicTransportService.fetchTrafficSchedule(transportType,line,station);
         System.out.println(publicTransportScheduleResponse);
