@@ -1,6 +1,5 @@
 package com.oc.p12.Service;
 
-import com.oc.p12.Bean.Dto.CarTraffic.CarTrafficDashboardDTO;
 import com.oc.p12.Bean.Dto.GeneralDashboardInformation;
 import com.oc.p12.Entity.Account;
 import org.springframework.beans.factory.annotation.Autowired;

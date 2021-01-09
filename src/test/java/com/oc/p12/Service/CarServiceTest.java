@@ -20,6 +20,7 @@ public class CarServiceTest {
         System.out.println(carTravelDateJson.normalTrafficTime());
         System.out.println(carTravelDateJson.realTrafficTime());
         System.out.println(carTravelDateJson.distanceAtoB());
+        System.out.println(carTravelDateJson.getStatus());
 
     }
 

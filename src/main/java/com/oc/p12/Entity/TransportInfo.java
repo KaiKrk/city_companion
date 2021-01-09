@@ -1,7 +1,6 @@
 package com.oc.p12.Entity;
 
 import com.oc.p12.Bean.Dto.TransportRegistrationDto;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 
 import javax.persistence.*;
 
@@ -43,7 +42,7 @@ public class TransportInfo {
         this.account = account;
     }
 
-    public TransportInfo(Account account, Adress workAdress){
+    public TransportInfo(Account account, Address workAddress){
         this.account = account;
     }
     public int getId() {

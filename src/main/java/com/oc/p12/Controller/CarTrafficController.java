@@ -3,7 +3,7 @@ package com.oc.p12.Controller;
 import com.oc.p12.Bean.Dto.Account.AccountRequest;
 import com.oc.p12.Bean.Dto.Adress.AdressRequest;
 import com.oc.p12.Bean.Dto.CarTraffic.CarTravelDto;
-import com.oc.p12.Entity.Adress;
+import com.oc.p12.Entity.Address;
 import com.oc.p12.Entity.CarTravel;
 import com.oc.p12.Entity.TransportInfo;
 import com.oc.p12.Service.AccountService;
@@ -33,9 +33,9 @@ public class CarTrafficController {
     }
 
     @PostMapping("/saveCarTravelInfo")
-    public ResponseEntity<TransportInfo> saveCarTravelInfo(AdressRequest adressRequest, Adress workAdress){
-        Adress newAdress = adressService.save(workAdress);
-        TransportInfo newTransportInfo = new TransportInfo(accountService.findById(adressRequest.getCarTravelId()), newAdress);
+    public ResponseEntity<TransportInfo> saveCarTravelInfo(AdressRequest adressRequest, Address workAddress){
+        Address newAddress = adressService.save(workAddress);
+        TransportInfo newTransportInfo = new TransportInfo(accountService.findById(adressRequest.getCarTravelId()), newAddress);
         carTravelService.saveCarTravelInfo(newTransportInfo);
         return new ResponseEntity<>(newTransportInfo, HttpStatus.OK);
     }

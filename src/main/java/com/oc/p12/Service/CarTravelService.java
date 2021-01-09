@@ -2,6 +2,7 @@ package com.oc.p12.Service;
 
 import com.oc.p12.Bean.Dto.CarTraffic.CarTravelDto;
 import com.oc.p12.Bean.Dto.CarTraffic.CarTravelResponseDto;
+import com.oc.p12.Bean.Dto.Dashboard.CarTrafficDashboardDTO;
 import com.oc.p12.Entity.Account;
 import com.oc.p12.Entity.CarTravel;
 import com.oc.p12.Entity.TransportInfo;
@@ -21,6 +22,8 @@ public class CarTravelService {
     @Autowired
     CarTravelRepository carTravelRepository;
 
+
+
     RestTemplate restTemplate = new RestTemplate();
     private String googleMatrixApiUrl = "https://maps.googleapis.com/maps/api/distancematrix/json?units=metric";
     private String originParamater = "&origins=";
@@ -39,7 +42,7 @@ public class CarTravelService {
     }
 
     public CarTravelDto fetchRealTimeTrafficByAccount(TransportInfo transportInfo){
-        CarTravelResponseDto actualTraffic = getTraficInformation(transportInfo.getAccount().getAdress().getAdressToString(), transportInfo.getAccount().getWorkAdress().getAdressToString());
+        CarTravelResponseDto actualTraffic = getTraficInformation(transportInfo.getAccount().getAddress().getAdressToString(), transportInfo.getAccount().getWorkAddress().getAdressToString());
         CarTravel carTravel = new CarTravel(actualTraffic, transportInfo);
         return new CarTravelDto( carTravelRepository.save(carTravel));
     }
@@ -58,5 +61,9 @@ public class CarTravelService {
 
     public CarTravel getCarTravelByCarTravelInfo(TransportInfo transportInfo){
         return carTravelRepository.findByTransportInfo(transportInfo);
+    }
+
+    public CarTrafficDashboardDTO getTrafficDashboardDTO(Account account){
+        return new CarTrafficDashboardDTO(getTraficInformation(account.getAddress().getAdressToString(), account.getWorkAddress().getAdressToString()), account.getAddress(), account.getWorkAddress());
     }
 }

@@ -1,8 +1,6 @@
 package com.oc.p12.Bean.Dto.Adress;
 
-import com.oc.p12.Entity.Adress;
-
-import javax.persistence.Column;
+import com.oc.p12.Entity.Address;
 
 public class AdressDto {
 
@@ -32,13 +30,13 @@ public class AdressDto {
         isHomeAddress = homeAddress;
     }
 
-    public AdressDto(Adress adress) {
-        this.id = adress.getId();
-        this.streetNumber = adress.getStreetNumber();
-        this.streetName = adress.getStreetName();
-        this.city = adress.getCity();
-        this.postalCode = adress.getPostalCode();
-        this.isHomeAddress =  adress.isHomeAdress();
+    public AdressDto(Address address) {
+        this.id = address.getId();
+        this.streetNumber = address.getStreetNumber();
+        this.streetName = address.getStreetName();
+        this.city = address.getCity();
+        this.postalCode = address.getPostalCode();
+        this.isHomeAddress =  address.isHomeAdress();
     }
 
     public String getStreetNumber() {

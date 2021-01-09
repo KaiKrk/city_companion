@@ -3,7 +3,6 @@ package com.oc.p12.Entity;
 import com.oc.p12.Bean.Dto.Account.AccountDto;
 
 import javax.persistence.*;
-import java.time.LocalTime;
 
 @Entity
 @Table(name = "account")
@@ -28,11 +27,11 @@ public class Account {
 
     @OneToOne
     @JoinColumn(name = "adress_id", referencedColumnName = "adress_id")
-    private Adress adress;
+    private Address address;
 
     @OneToOne
     @JoinColumn(name = "work_adress_id", referencedColumnName = "adress_id")
-    private Adress workAdress;
+    private Address workAddress;
 
     @Column(name = "departure_time")
     private String departureTime;
@@ -56,12 +55,12 @@ public class Account {
         this.id = id;
     }
 
-    public Adress getWorkAdress() {
-        return workAdress;
+    public Address getWorkAddress() {
+        return workAddress;
     }
 
-    public void setWorkAdress(Adress workAdress) {
-        this.workAdress = workAdress;
+    public void setWorkAddress(Address workAddress) {
+        this.workAddress = workAddress;
     }
 
     public int getAccountId() {
@@ -96,12 +95,12 @@ public class Account {
         this.password = password;
     }
 
-    public Adress getAdress() {
-        return adress;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAdress(Adress adress) {
-        this.adress = adress;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public String getDepartureTime() {
@@ -128,8 +127,8 @@ public class Account {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", password='" + password + '\'' +
-                ", adress=" + adress +
-                ", workAdress=" + workAdress +
+                ", adress=" + address +
+                ", workAdress=" + workAddress +
                 ", departureTime='" + departureTime + '\'' +
                 '}';
     }

@@ -1,8 +1,11 @@
 package com.oc.p12.Service;
 
+import com.oc.p12.Bean.Dto.Dashboard.AirQualityDashboardDto;
+import com.oc.p12.Bean.Dto.Dashboard.WeatherDashboardDto;
 import com.oc.p12.Bean.Dto.Weather.AirQualityResponseDto;
 import com.oc.p12.Bean.Dto.Weather.WeatherAirQualityDto;
 import com.oc.p12.Bean.Dto.Weather.WeatherResponseDto;
+import com.oc.p12.Entity.Account;
 import com.oc.p12.Entity.AirQuality;
 import com.oc.p12.Entity.Weather;
 import com.oc.p12.Repository.AirQualityRepository;
@@ -14,6 +17,8 @@ import org.springframework.web.client.RestTemplate;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,6 +83,15 @@ public class WeatherService {
         return  airQualityResponseDtos;
     }
 
+    public WeatherDashboardDto getWeatherDashboardInfo(){
+        Weather weather = weatherRepository.findByDayAndHourOfTheDay(LocalDate.now(),LocalTime.parse(LocalTime.now().withMinute(00).withSecond(00).format(DateTimeFormatter.ofPattern("HH:mm:ss"))));
+        return new WeatherDashboardDto(weather);
+    }
+
+    public AirQualityDashboardDto getAirQualityDashboardInfo(){
+        AirQuality airQuality = airQualityRepository.findByDayAndHour(LocalDate.now(),LocalTime.parse(LocalTime.now().withMinute(00).withSecond(00).format(DateTimeFormatter.ofPattern("HH:mm:ss"))));
+        return new AirQualityDashboardDto(airQuality);
+    }
 
 
 

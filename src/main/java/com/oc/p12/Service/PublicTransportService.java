@@ -83,7 +83,7 @@ public class PublicTransportService {
      return publicTransportTravelRepository.findPublicTransportTravelsByAccountIn(accounts);
     }
 
-    public PublicTransportDashboardDTO getDashboardInfo(Account account){
+    public PublicTransportDashboardDTO getPublicTransportDashboardInfo(Account account){
         TransportInfo tf = transportInfoService.findByAccount(account);
         PublicTransportScheduleResponse publicTransportScheduleResponse = fetchTrafficSchedule(tf.getTransportType(),tf.getTransportLine(),tf.getDepartureStop());
         TrafficInfoResponse trafficInfoResponse = fetchTrafficInformation(tf.getTransportType(),tf.getTransportLine());

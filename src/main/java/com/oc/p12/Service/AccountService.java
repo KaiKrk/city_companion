@@ -6,7 +6,7 @@ import com.oc.p12.Bean.Dto.Adress.AdressDto;
 import com.oc.p12.Bean.Dto.RegistrationDto;
 import com.oc.p12.Bean.Dto.TransportRegistrationDto;
 import com.oc.p12.Entity.Account;
-import com.oc.p12.Entity.Adress;
+import com.oc.p12.Entity.Address;
 import com.oc.p12.Entity.TransportInfo;
 import com.oc.p12.Repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AccountService {
@@ -41,8 +40,8 @@ public class AccountService {
 
     public AccountDto registration(RegistrationDto dto){
         dto.getAccount().setPassword(passwordEncoder.encode( dto.getAccount().getPassword()));
-        dto.getAccount().setAdress( adressService.save(new Adress(dto.getHomeAdress())));
-        dto.getAccount().setWorkAdress(( adressService.save(new Adress(dto.getWorkAdress()))));
+        dto.getAccount().setAddress( adressService.save(new Address(dto.getHomeAdress())));
+        dto.getAccount().setWorkAddress(( adressService.save(new Address(dto.getWorkAdress()))));
         Account account = accountRepository.save(dto.getAccount());
         transportInfoService.save(new TransportInfo(dto.getTransportRegistrationDto(), account));
         return new AccountDto(accountRepository.save(dto.getAccount()));
@@ -51,8 +50,8 @@ public class AccountService {
     public AccountDto update(RegistrationDto dto){
         /*adressService.save(new Adress(dto.getHomeAdress()));
         adressService.save(new Adress(dto.getWorkAdress()));*/
-        dto.getAccount().setAdress( adressService.save(new Adress(dto.getHomeAdress())));
-        dto.getAccount().setWorkAdress(( adressService.save(new Adress(dto.getWorkAdress()))));
+        dto.getAccount().setAddress( adressService.save(new Address(dto.getHomeAdress())));
+        dto.getAccount().setWorkAddress(( adressService.save(new Address(dto.getWorkAdress()))));
         transportInfoService.save(new TransportInfo(dto.getTransportRegistrationDto()));
         return save(dto.getAccount());
     }
@@ -80,8 +79,8 @@ public class AccountService {
         AccountInfoDto dto = new AccountInfoDto();
         Account account = findById(id);
         dto.setAccount(new AccountDto(account));
-        dto.setHomeAdress(new AdressDto(account.getAdress()));
-        dto.setWorkAdress(new AdressDto(account.getWorkAdress()));
+        dto.setHomeAdress(new AdressDto(account.getAddress()));
+        dto.setWorkAdress(new AdressDto(account.getWorkAddress()));
         dto.setTransportRegistrationDto(new TransportRegistrationDto(transportInfoService.findByAccount(account)));
         return dto;
     }

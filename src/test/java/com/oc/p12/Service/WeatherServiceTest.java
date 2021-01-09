@@ -8,6 +8,8 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 @SpringBootTest
 public class WeatherServiceTest {
@@ -26,6 +28,8 @@ public class WeatherServiceTest {
     @Test
     public void pingTest(){
         LocalDate date =  LocalDate.now();
+        LocalTime time = LocalTime.now();
         System.out.println(date);
+        System.out.println(time.withMinute(00).withSecond(00).format(DateTimeFormatter.ofPattern("HH:mm:ss")));
     }
 }
