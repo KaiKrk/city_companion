@@ -13,5 +13,5 @@ public interface AirQualityRepository extends JpaRepository<AirQuality, Integer>
 
     public List<AirQuality> findAllByRegisteredOn(Date registeredOn);
 
-    public AirQuality findByDayAndHour(LocalDate date, LocalTime time);
+    public List<AirQuality> findByDayAndHourOrderByRegisteredOnDesc(Date date, Time time);
 }

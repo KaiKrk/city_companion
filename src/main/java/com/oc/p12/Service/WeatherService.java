@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -84,12 +85,12 @@ public class WeatherService {
     }
 
     public WeatherDashboardDto getWeatherDashboardInfo(){
-        Weather weather = weatherRepository.findByDayAndHourOfTheDay(LocalDate.now(),LocalTime.parse(LocalTime.now().withMinute(00).withSecond(00).format(DateTimeFormatter.ofPattern("HH:mm:ss"))));
+        Weather weather = weatherRepository.findByDayAndHourOfTheDayOrderByRegisteredOnDesc(Date.valueOf(LocalDate.now()), Time.valueOf(LocalTime.parse(LocalTime.now().withMinute(00).withSecond(00).format(DateTimeFormatter.ofPattern("HH:mm:ss"))))).get(0);
         return new WeatherDashboardDto(weather);
     }
 
     public AirQualityDashboardDto getAirQualityDashboardInfo(){
-        AirQuality airQuality = airQualityRepository.findByDayAndHour(LocalDate.now(),LocalTime.parse(LocalTime.now().withMinute(00).withSecond(00).format(DateTimeFormatter.ofPattern("HH:mm:ss"))));
+        AirQuality airQuality = airQualityRepository.findByDayAndHourOrderByRegisteredOnDesc(Date.valueOf(LocalDate.now()), Time.valueOf(LocalTime.parse(LocalTime.now().withMinute(00).withSecond(00).format(DateTimeFormatter.ofPattern("HH:mm:ss"))))).get(0);
         return new AirQualityDashboardDto(airQuality);
     }
 

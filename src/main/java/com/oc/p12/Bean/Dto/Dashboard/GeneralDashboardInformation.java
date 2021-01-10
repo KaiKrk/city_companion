@@ -1,4 +1,4 @@
-package com.oc.p12.Bean.Dto;
+package com.oc.p12.Bean.Dto.Dashboard;
 
 import com.oc.p12.Bean.Dto.Dashboard.CarTrafficDashboardDTO;
 import com.oc.p12.Bean.Dto.Dashboard.AirQualityDashboardDto;

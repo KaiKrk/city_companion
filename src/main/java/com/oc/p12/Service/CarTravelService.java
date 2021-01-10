@@ -22,6 +22,9 @@ public class CarTravelService {
     @Autowired
     CarTravelRepository carTravelRepository;
 
+    @Autowired
+    AccountService accountService;
+
 
 
     RestTemplate restTemplate = new RestTemplate();
@@ -33,8 +36,7 @@ public class CarTravelService {
 
 
     public CarTravelResponseDto getTraficInformation(String origin, String destination){
-        origin ="41 rue de seine alfortville";
-        destination = "krakow";
+
         ResponseEntity<CarTravelResponseDto> responseEntity =
                 restTemplate.getForEntity(googleMatrixApiUrl+originParamater+origin+destinationParameter+destination+googleMatrixApiKey+departureTime, CarTravelResponseDto.class);
         CarTravelResponseDto carTravelResponse = responseEntity.getBody();
@@ -63,7 +65,8 @@ public class CarTravelService {
         return carTravelRepository.findByTransportInfo(transportInfo);
     }
 
-    public CarTrafficDashboardDTO getTrafficDashboardDTO(Account account){
+    public CarTrafficDashboardDTO getTrafficDashboardDTO(int accountId){
+        Account account = accountService.findById(accountId);
         return new CarTrafficDashboardDTO(getTraficInformation(account.getAddress().getAdressToString(), account.getWorkAddress().getAdressToString()), account.getAddress(), account.getWorkAddress());
     }
 }

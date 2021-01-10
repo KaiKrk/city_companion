@@ -1,7 +1,6 @@
 package com.oc.p12.Service;
 
-import com.oc.p12.Bean.Dto.GeneralDashboardInformation;
-import com.oc.p12.Entity.Account;
+import com.oc.p12.Bean.Dto.Dashboard.GeneralDashboardInformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,10 +20,13 @@ public class DashboardService {
     PublicTransportService publicTransportService;
 
     public GeneralDashboardInformation getDashboardInformations(int accountId){
-        Account account = accountService.findById(accountId);
         GeneralDashboardInformation generalDashboardInformation = new GeneralDashboardInformation();
+        generalDashboardInformation.setWeather(weatherService.getWeatherDashboardInfo());
+        generalDashboardInformation.setAirQuality(weatherService.getAirQualityDashboardInfo());
+        generalDashboardInformation.setCarTraffic(carTravelService.getTrafficDashboardDTO(accountId));
 
-        return null;
+        generalDashboardInformation.setPublicTransport(publicTransportService.getPublicTransportDashboardInfo(accountId));
+        return generalDashboardInformation;
     }
 
 }

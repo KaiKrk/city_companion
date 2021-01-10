@@ -7,6 +7,7 @@ import com.oc.p12.Entity.TransportInfo;
 import lombok.Data;
 import lombok.ToString;
 
+import java.util.List;
 import java.util.Map;
 
 @Data
@@ -15,7 +16,7 @@ public class PublicTransportDashboardDTO {
 
     public String station;
     public String lineStatus;
-    public Map<String,String> nextDepartures;
+    public List<ScheduleDetail> nextDepartures;
 
     public PublicTransportDashboardDTO() {
     }
@@ -25,7 +26,7 @@ public class PublicTransportDashboardDTO {
         this.lineStatus = tir.getResult().getTitle();
         for (ScheduleDetail schedule : ptsr.getResult().getSchedules()
              ) {
-            this.nextDepartures.put(schedule.getDestination(), schedule.getMessage());
+            this.nextDepartures.add( new ScheduleDetail( schedule.getMessage(),schedule.getDestination()));
         }
 
     }

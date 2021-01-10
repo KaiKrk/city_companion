@@ -33,6 +33,9 @@ public class PublicTransportService {
     @Autowired
     PublicTransportTrafficRepository publicTransportTrafficRepository;
 
+    @Autowired
+    AccountService accountService;
+
     private String publicTransportApiUrl = "https://api-ratp.pierre-grimaud.fr/v4";
     private RestTemplate restTemplate = new RestTemplate();
 
@@ -83,11 +86,17 @@ public class PublicTransportService {
      return publicTransportTravelRepository.findPublicTransportTravelsByAccountIn(accounts);
     }
 
-    public PublicTransportDashboardDTO getPublicTransportDashboardInfo(Account account){
+    public PublicTransportDashboardDTO getPublicTransportDashboardInfo(int accountId){
+        Account account = accountService.findById(accountId);
         TransportInfo tf = transportInfoService.findByAccount(account);
-        PublicTransportScheduleResponse publicTransportScheduleResponse = fetchTrafficSchedule(tf.getTransportType(),tf.getTransportLine(),tf.getDepartureStop());
-        TrafficInfoResponse trafficInfoResponse = fetchTrafficInformation(tf.getTransportType(),tf.getTransportLine());
-    return new PublicTransportDashboardDTO(tf,publicTransportScheduleResponse,trafficInfoResponse);
+        if (tf.getTransportType().equals("car")){
+            return new PublicTransportDashboardDTO();
+        } else {
+            PublicTransportScheduleResponse publicTransportScheduleResponse = fetchTrafficSchedule(tf.getTransportType(),tf.getTransportLine(),tf.getDepartureStop());
+            TrafficInfoResponse trafficInfoResponse = fetchTrafficInformation(tf.getTransportType(),tf.getTransportLine());
+            return new PublicTransportDashboardDTO(tf,publicTransportScheduleResponse,trafficInfoResponse);
+        }
+
     }
 
 

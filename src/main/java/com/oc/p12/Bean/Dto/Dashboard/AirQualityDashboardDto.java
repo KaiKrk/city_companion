@@ -1,7 +1,11 @@
 package com.oc.p12.Bean.Dto.Dashboard;
 
 import com.oc.p12.Entity.AirQuality;
+import lombok.Data;
+import lombok.ToString;
 
+@Data
+@ToString
 public class AirQualityDashboardDto {
 
     public String index;

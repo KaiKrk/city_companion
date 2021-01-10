@@ -9,6 +9,11 @@ public class ScheduleDetail {
     public ScheduleDetail() {
     }
 
+    public ScheduleDetail(String message, String destination) {
+        this.message = message;
+        this.destination = destination;
+    }
+
     public String getMessage() {
         return message;
     }

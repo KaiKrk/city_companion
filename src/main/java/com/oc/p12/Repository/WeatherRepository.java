@@ -13,5 +13,5 @@ public interface WeatherRepository extends JpaRepository<Weather, Integer> {
 
     List<Weather> findAllByRegisteredOn(Date date);
 
-    Weather findByDayAndHourOfTheDay(LocalDate date, LocalTime hour);
+    List<Weather> findByDayAndHourOfTheDayOrderByRegisteredOnDesc(Date date, Time hour);
 }
