@@ -18,6 +18,7 @@ public class WeatherDashboardDto {
 
     public WeatherDashboardDto(Weather weather) {
         Map<String,String> precipitationType = getPrecipationType();
+        System.out.println(weather.getPrecipitationType());
         this.rain = precipitationType.get(weather.getPrecipitationType());
         this.rainProbability = weather.getPrecipirationProbability();
         this.temperature = weather.getTemperature();
@@ -29,7 +30,7 @@ public class WeatherDashboardDto {
         precipitationType.put("none", "Pas de Pluie");
         precipitationType.put("rain", "Risque de Pluie");
         precipitationType.put("snow", "Risque de Neige");
-        precipitationType.put("freezing snow", "Risque de Pluie Verglacante");
+        precipitationType.put("freezing rain", "Risque de Pluie Verglacante");
         return precipitationType;
     }
 }

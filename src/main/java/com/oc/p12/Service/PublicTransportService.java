@@ -94,7 +94,7 @@ public class PublicTransportService {
         } else {
             PublicTransportScheduleResponse publicTransportScheduleResponse = fetchTrafficSchedule(tf.getTransportType(),tf.getTransportLine(),tf.getDepartureStop());
             TrafficInfoResponse trafficInfoResponse = fetchTrafficInformation(tf.getTransportType(),tf.getTransportLine());
-            return new PublicTransportDashboardDTO(tf,publicTransportScheduleResponse,trafficInfoResponse);
+            return new PublicTransportDashboardDTO(tf.getTransportType(),tf.getTransportLine(),tf,publicTransportScheduleResponse,trafficInfoResponse);
         }
 
     }
