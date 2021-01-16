@@ -4,6 +4,9 @@ import com.oc.p12.Bean.Dto.Dashboard.GeneralDashboardInformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Service
 public class DashboardService {
 
@@ -24,7 +27,7 @@ public class DashboardService {
         generalDashboardInformation.setWeather(weatherService.getWeatherDashboardInfo());
         generalDashboardInformation.setAirQuality(weatherService.getAirQualityDashboardInfo());
         generalDashboardInformation.setCarTraffic(carTravelService.getTrafficDashboardDTO(accountId));
-
+        generalDashboardInformation.setDate(LocalDateTime.now().toString());
         generalDashboardInformation.setPublicTransport(publicTransportService.getPublicTransportDashboardInfo(accountId));
         return generalDashboardInformation;
     }

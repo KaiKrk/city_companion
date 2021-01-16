@@ -11,6 +11,7 @@ import lombok.ToString;
 @ToString
 public class GeneralDashboardInformation {
 
+    public String date;
     WeatherDashboardDto weather;
     AirQualityDashboardDto airQuality;
     PublicTransportDashboardDTO publicTransport;
