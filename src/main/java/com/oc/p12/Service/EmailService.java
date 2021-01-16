@@ -1,7 +1,9 @@
 package com.oc.p12.Service;
 
+import com.oc.p12.Bean.Dto.Dashboard.GeneralDashboardInformation;
 import com.oc.p12.Bean.MailDetails;
 import com.sun.mail.smtp.SMTPTransport;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.mail.*;
@@ -14,6 +16,10 @@ import java.util.Properties;
 public class EmailService {
     MailDetails mailDetails = new MailDetails();
 
+    @Autowired
+    DashboardService dashboardService;
+    @Autowired
+    AccountService accountService;
 
     public Properties getProperties (){
         Properties properties = new Properties();
@@ -42,10 +48,11 @@ public class EmailService {
 
     }
 
-    public void sendEmailDailyInformations(String email) throws Exception {
-
+    public void sendEmailDailyInformations(String email, int accountId) throws Exception {
+        GeneralDashboardInformation dto = dashboardService.getDashboardInformations(accountId);
+        String name = accountService.findById(accountId).getName();
         System.out.println(" email : " + mailDetails.getMyAccountEmail() + "  " + mailDetails.getPassword());
-        Message message = prepareMessage(getSession(), mailDetails.getMyAccountEmail(), email);
+        Message message = prepareMessageForDailyInfo(getSession(), mailDetails.getMyAccountEmail(), email, name, dto);
         System.out.println(message);
         Transport.send(message);
 
@@ -58,6 +65,20 @@ public class EmailService {
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
             message.setSubject(mailDetails.getSubject());
+            return message;
+        } catch (AddressException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    private Message prepareMessageForDailyInfo(Session session, String myAccountEmail, String recepient, String name, GeneralDashboardInformation dto) throws MessagingException {
+
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(myAccountEmail));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
+            message.setSubject(mailDetails.getSubject());
+            message.setContent(mailDetails.getDailyHTMLMessage(name,dto), "text/html");
             return message;
         } catch (AddressException e) {
             e.printStackTrace();

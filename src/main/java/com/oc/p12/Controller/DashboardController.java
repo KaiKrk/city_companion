@@ -20,7 +20,6 @@ public class DashboardController {
     @GetMapping("/dashboard")
     public ResponseEntity<GeneralDashboardInformation> getAccountInfo(@RequestParam Integer id){
         GeneralDashboardInformation dto = dashboardService.getDashboardInformations(id);
-        System.out.println(dto.toString());
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
