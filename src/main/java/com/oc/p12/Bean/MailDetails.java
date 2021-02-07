@@ -1,7 +1,6 @@
 package com.oc.p12.Bean;
 
 import com.oc.p12.Bean.Dto.Dashboard.GeneralDashboardInformation;
-import com.oc.p12.Bean.Dto.Dashboard.WeatherDashboardDto;
 import com.oc.p12.Bean.Dto.PublicTransport.Schedule.ScheduleDetail;
 import lombok.Data;
 
@@ -22,30 +21,31 @@ public class MailDetails {
             "   HTML tags</h1>";
 
     public String getDailyHTMLMessage(String name, GeneralDashboardInformation dto){
-        String nextPublicTransportDepartures = new String();
+        String nextPublicTransportDepartures = "";;
+        System.out.println("prochain départ" +dto.getPublicTransport().getNextDepartures());
         if (!dto.getPublicTransport().getNextDepartures().isEmpty()){
             for (ScheduleDetail scheduleDetail : dto.getPublicTransport().getNextDepartures()
             ) {
-
-            nextPublicTransportDepartures.concat(scheduleDetail.getDestination() + " " + scheduleDetail.getMessage());
+            nextPublicTransportDepartures = nextPublicTransportDepartures.concat(scheduleDetail.getDestination() + " " + scheduleDetail.getMessage() + " / ");
             }
+            System.out.println("email départ" +  nextPublicTransportDepartures);
         }
 
-        return "<h1>Bonjour \n" + name +" </h1> <h4>Voici les informations du jour </h4>" + " " +
+        return "<h1>Bonjour \n" + name +" </h1> <h2>Voici les informations du jour </h2>" + " " +
                 "            <p>Date :+" + dto.getDate() +" </p>\n" +
-                "            <h5>Meteo</h5>\n" +
+                "            <h3>Meteo</h3>\n" +
                 "            <p>Pluie : "+ dto.getWeather().getRain() +" (" + dto.getWeather().rainProbability+"%)</p>\n" +
                 "            <p>Température : "+dto.getWeather().getTemperature() +"</p>\n" +
                 "            <p>Température ressentie: "+dto.getWeather().getFeelsLike() +"</p>\n" +
-                "            <h5>Qualite de l'air </h5>\n" +
+                "            <h3>Qualite de l'air </h3>\n" +
                 "            <p>Index : "+ dto.getAirQuality().getIndex()+"</p>\n" +
                 "            <p>Qualité : "+ dto.getAirQuality().getQuality()+"</p>\n" +
                 "            <p>Concentration de particules : </p>\n" +
-                "            <p>PM2.5 : "+ dto.getAirQuality().getPm25() +"</p> <p>PM10 : "+ dto.getAirQuality().getPm10() +"</p>  <p>O2 : "+ dto.getAirQuality().getO3()+"</p>\n" +
-                "            <h5>Condition de circulation</h5>\n" +
+                "            <p>PM2.5 : "+ dto.getAirQuality().getPm25() +" µg/m³" +"</p> <p>PM10 : "+ dto.getAirQuality().getPm10() +" µg/m³"+"</p>  <p>O2 : "+ dto.getAirQuality().getO3()+" µg/m³"+"</p>\n" +
+                "            <h3>Condition de circulation</h3>\n" +
                 "            <p>Temps de parcours normal : "+ dto.getCarTraffic().getTravelTime()+"</p>\n" +
                 "            <p>Temps de parcours estimé actuel : "+ dto.getCarTraffic().getEstimatedTravelTime()+"</p>\n" +
-                "            <h5>Condition du reseau de transport en commun</h5>\n" +
+                "            <h3>Condition du reseau de transport en commun</h3>\n" +
                 "            <p>Ligne : "+nullChecker(dto.getPublicTransport().getTransportLine())+"</p>\n" +
                 "            <p>Arret : "+ nullChecker(dto.getPublicTransport().getStation()) +"</p>\n" +
                 "            <p class=\"card-text\">Etat de la ligne : "+ nullChecker(dto.getPublicTransport().getLineStatus())+"</p>\n" +
@@ -56,8 +56,13 @@ public class MailDetails {
         return subject;
     }
 
+    public String getSubjectAccountCreation() {
+        return accountCreationSubject;
+    }
+
     public String nullChecker(String value){
-        if (value.equalsIgnoreCase("null") | value.isEmpty() | value == null){
+        System.out.println("value " + value);
+        if (value == null){
             value = "Non référencé";
             return value;
         }

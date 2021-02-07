@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+/**
+ * spring security service that load user by email
+ */
 @Service
 public class MyUserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
 

@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * controller that returns all dashboard informations
+ */
 @CrossOrigin("*")
 @RestController
 public class DashboardController {
@@ -17,6 +20,11 @@ public class DashboardController {
     @Autowired
     DashboardService dashboardService;
 
+    /**
+     * return dashboardDto containing all informations of a user
+     * @param id
+     * @return general informations for dashboard
+     */
     @GetMapping("/dashboard")
     public ResponseEntity<GeneralDashboardInformation> getAccountInfo(@RequestParam Integer id){
         GeneralDashboardInformation dto = dashboardService.getDashboardInformations(id);

@@ -12,5 +12,4 @@ public class PublicTransportController {
     @Autowired
     PublicTransportService publicTransportService;
 
-
 }

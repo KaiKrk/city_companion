@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * controller that fetch weather datas on climacell API
+ */
 @CrossOrigin("http://localhost:4200")
 @RestController
 public class WeatherController {
@@ -17,11 +20,18 @@ public class WeatherController {
     @Autowired
     WeatherService weatherService;
 
+    /**
+     * get today's weather data
+     * @return list of weather data
+     */
     @GetMapping("/weatherDatas")
     public List<WeatherResponseDto> getWeatherDatas(){
         return weatherService.getWeatherDataOfTheDay();
     }
 
+    /**
+     * collect data from climacell API
+     */
     @GetMapping("/collect")
     public void fetchingDatas(){
         weatherService.fetchWeatherDatas();

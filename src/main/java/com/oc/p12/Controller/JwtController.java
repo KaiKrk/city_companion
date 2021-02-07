@@ -15,6 +15,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * JWT controller that initiate the authentication process
+ */
 @CrossOrigin("http://localhost:4200")
 @RestController
 public class JwtController {

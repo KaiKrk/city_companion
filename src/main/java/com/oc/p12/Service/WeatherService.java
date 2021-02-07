@@ -23,6 +23,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * service for weather entity
+ */
 @Service
 public class WeatherService {
 
@@ -34,23 +37,31 @@ public class WeatherService {
     @Autowired
     AirQualityRepository airQualityRepository;
 
-
+    /**
+     * initialize weather API constant
+     */
     private String weatherApiUrl = "https://api.climacell.co/v3/weather/forecast/hourly?";
     private String weatherApiKey = "apikey=LAUsBhJAeUftlvFsAGlGcsdXzemJaSoN";
     private String parisCoordinates = "&lon=2.3488&lat=48.8534";
     private String extraWeatherAirQualityParameters = "&fields=temp,feels_like,precipitation,precipitation_type,precipitation_probability,pm25,pm10,o3,epa_aqi,epa_health_concern";
 
-
+    /**
+     * method that fetch weathers datas from climacell API
+     * @return
+     */
     public WeatherAirQualityDto[] fetchWeatherDatas(){
         System.out.println("before request");
         ResponseEntity<WeatherAirQualityDto[]> responseEntity =
                 restTemplate.getForEntity(weatherApiUrl+weatherApiKey+ parisCoordinates+extraWeatherAirQualityParameters, WeatherAirQualityDto[].class);
         WeatherAirQualityDto[] weatherDatas = responseEntity.getBody();
         saveWeatherData(weatherDatas);
-        System.out.println(weatherDatas.length);
         return weatherDatas;
     }
 
+    /**
+     * method that saves weather informations in database
+     * @param weatherAirQualityDtos
+     */
     public void saveWeatherData(WeatherAirQualityDto[] weatherAirQualityDtos){
         for (WeatherAirQualityDto weatherAirQualityDto : weatherAirQualityDtos
              ) {
@@ -63,6 +74,10 @@ public class WeatherService {
 
     }
 
+    /**
+     * get weather informations for the day
+     * @return
+     */
     public List<WeatherResponseDto> getWeatherDataOfTheDay(){
         List<WeatherResponseDto> weatherResponseDtos = new ArrayList<>();
         List<Weather> weatherDatasOfTheDay = weatherRepository.findAllByRegisteredOn(Date.valueOf(LocalDate.now()));
@@ -74,6 +89,10 @@ public class WeatherService {
         return  weatherResponseDtos;
     }
 
+    /**
+     * get weather quality for the day
+     * @return
+     */
     public List<AirQualityResponseDto> getAirQualityDataOfTheDay(){
         List<AirQualityResponseDto> airQualityResponseDtos = new ArrayList<>();
         List<AirQuality> airQuality = airQualityRepository.findAllByRegisteredOn(Date.valueOf(LocalDate.now()));
@@ -84,16 +103,23 @@ public class WeatherService {
         return  airQualityResponseDtos;
     }
 
+    /**
+     * get weather informations that will be displayed on the web dashboard
+     * @return
+     */
     public WeatherDashboardDto getWeatherDashboardInfo(){
         Weather weather = weatherRepository.findByDayAndHourOfTheDayOrderByRegisteredOnDesc(Date.valueOf(LocalDate.now()), Time.valueOf(LocalTime.parse(LocalTime.now().withMinute(00).withSecond(00).format(DateTimeFormatter.ofPattern("HH:mm:ss"))))).get(0);
         return new WeatherDashboardDto(weather);
     }
 
+    /**
+     * get air quality informations that will be displayed on the web dashboard
+     * @return
+     */
     public AirQualityDashboardDto getAirQualityDashboardInfo(){
         AirQuality airQuality = airQualityRepository.findByDayAndHourOrderByRegisteredOnDesc(Date.valueOf(LocalDate.now()), Time.valueOf(LocalTime.parse(LocalTime.now().withMinute(00).withSecond(00).format(DateTimeFormatter.ofPattern("HH:mm:ss"))))).get(0);
         return new AirQualityDashboardDto(airQuality);
     }
-
 
 
 }

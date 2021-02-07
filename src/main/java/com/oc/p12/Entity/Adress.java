@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "adress")
-public class Address {
+public class Adress {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +36,7 @@ public class Address {
         isHomeAdress = homeAdress;
     }
 
-    public Address() {
+    public Adress() {
     }
 
   /*  public Adress(AdressDto dto) {
@@ -47,7 +47,7 @@ public class Address {
         this.isHomeAdress = dto.isHomeAddress;
     }*/
 
-    public Address(AdressDto dto) {
+    public Adress(AdressDto dto) {
         this.id = dto.getId();
         this.streetNumber = dto.getStreetNumber();
         this.streetName = dto.getStreetName();

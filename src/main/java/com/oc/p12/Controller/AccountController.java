@@ -15,15 +15,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.ws.Response;
-
+/**
+ * Controller for Account Entity
+ */
 @CrossOrigin("*")
 @RestController
 public class AccountController {
 
     @Autowired
     AccountRepository accountRepository;
-    //change encoder to service instead of controller and test again save account
 
     @Autowired
     AccountService accountService;
@@ -34,7 +34,11 @@ public class AccountController {
     @Autowired
     TransportInfoService transportInfoService;
 
-
+    /**
+     * method that register a new account
+     * @param registrationDto
+     * @return registrationDTO with HTTP Status
+     */
     @PostMapping("/saveAccount")
     public ResponseEntity<RegistrationDto> saveAccount(@RequestBody RegistrationDto registrationDto){
         System.out.println(registrationDto);
@@ -42,6 +46,12 @@ public class AccountController {
         return new ResponseEntity<>(new RegistrationDto(), HttpStatus.OK);
     }
 
+    /**
+     * method that updates an existing account
+     * @param registrationDto
+     * @return update account informations
+     *
+     */
     @PostMapping("/updateAccount")
     public ResponseEntity<RegistrationDto> updateAccount(@RequestBody RegistrationDto registrationDto){
         System.out.println(registrationDto.toString());
@@ -49,12 +59,22 @@ public class AccountController {
         return new ResponseEntity<>(new RegistrationDto(), HttpStatus.OK);
     }
 
+    /**
+     * method that retrieve an account
+     * @param accountRequest
+     * @return account of the user
+     */
     @GetMapping("/myAccount")
     public ResponseEntity<AccountDto> getAccount(@RequestBody AccountRequest accountRequest){
         AccountDto accountDto = new AccountDto(accountRepository.findById(accountRequest.getId()));
         return new ResponseEntity<>(accountDto,HttpStatus.OK);
     }
 
+    /**
+     * method that retrieve an account
+     * @param id
+     * @return  account of the user
+     */
     @GetMapping("/account")
     public ResponseEntity<AccountInfoDto> getAccountInfo(@RequestParam Integer id){
         AccountInfoDto dto = accountService.getMemberInfo(id);

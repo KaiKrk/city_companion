@@ -18,6 +18,10 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
+/**
+ * Service to fetch and return datas from RATP API
+ *
+ */
 @Service
 public class PublicTransportService {
 
@@ -35,10 +39,17 @@ public class PublicTransportService {
 
     @Autowired
     AccountService accountService;
-
+    /**
+     * initiate API url
+     */
     private String publicTransportApiUrl = "https://api-ratp.pierre-grimaud.fr/v4";
     private RestTemplate restTemplate = new RestTemplate();
 
+    /**
+     * save public transport traffic informations
+     * @param publicTransportTraffic
+     * @return TrafficInfo
+     */
     public TrafficInfo savePublicTransportTraffic(PublicTransportTraffic publicTransportTraffic){
         return new TrafficInfo(publicTransportTrafficRepository.save(publicTransportTraffic));
     }
@@ -51,6 +62,12 @@ public class PublicTransportService {
         return new PublicTransportTravelDto(publicTransportTravelRepository.save(publicTransportTravelInfo));
     }
 
+    /**
+     * fetch real time traffic status from RATP API
+     * @param transportType
+     * @param line
+     * @return return API json response in a dto
+     */
     public TrafficInfoResponse fetchTrafficInformation(String transportType , String line){
 
         ResponseEntity<TrafficInfoResponse> trafficInfo = restTemplate.getForEntity(publicTransportApiUrl+"/traffic/"+transportType+"/"+line, TrafficInfoResponse.class);
@@ -58,34 +75,36 @@ public class PublicTransportService {
         return trafficInfo.getBody();
     }
 
+    /**
+     * get all station for a line
+     * @param transportType
+     * @param line
+     * @return
+     */
     public PublicTransportStationsResponse getLineStations(String transportType , String line){
 
         ResponseEntity<PublicTransportStationsResponse> trafficInfo = restTemplate.getForEntity(publicTransportApiUrl+"/stations/"+transportType+"/"+line, PublicTransportStationsResponse.class);
         return trafficInfo.getBody();
     }
 
-    public TrafficInfo getTrafficInformation(String line){
-        TrafficInfo trafficInfo =  publicTransportTrafficRepository.findLatestRecordByLine(line);
-        return trafficInfo;
-    }
-
+    /**
+     * Get from RATP API the specific traffic status from a station
+     * @param transportType
+     * @param line
+     * @param station
+     * @return API json response in a DTO
+     */
     public PublicTransportScheduleResponse fetchTrafficSchedule(String transportType, String line, String station){
         ResponseEntity<PublicTransportScheduleResponse> trafficSchedule =  restTemplate.getForEntity(publicTransportApiUrl+"/schedules/"+transportType+"/"+line+"/"+station+"/A+R", PublicTransportScheduleResponse.class);
         return trafficSchedule.getBody();
     }
 
-    public PublicTransportTravelDto getPublicTransportTravel(Account account){
-        return new PublicTransportTravelDto(publicTransportTravelRepository.findByAccount(account));
-    }
-    public PublicTransportTravel getPublicTransportTravelInfo(Account account){
-        return publicTransportTravelRepository.findByAccount(account);
-    }
 
-
-    public List<PublicTransportTravel> getPublicTransportTravelsByAccountIn(List<Account> accounts){
-     return publicTransportTravelRepository.findPublicTransportTravelsByAccountIn(accounts);
-    }
-
+    /**
+     * get transport info for dashboard display for an account
+     * @param accountId
+     * @return
+     */
     public PublicTransportDashboardDTO getPublicTransportDashboardInfo(int accountId){
         Account account = accountService.findById(accountId);
         TransportInfo tf = transportInfoService.findByAccount(account);

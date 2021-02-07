@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * Controller for AirQuality entity
+ */
 @CrossOrigin("http://localhost:4200")
 @RestController
 public class AirQualityController {
@@ -16,6 +19,10 @@ public class AirQualityController {
     @Autowired
     WeatherService weatherService;
 
+    /**
+     * method that fetch airQuality datas on Climacell API
+     * @return response of Climacell Rest API
+     */
     @GetMapping("/airQuality")
     public List<AirQualityResponseDto> getAirQualityDatas(){
         return weatherService.getAirQualityDataOfTheDay();

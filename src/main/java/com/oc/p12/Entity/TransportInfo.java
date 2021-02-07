@@ -42,7 +42,7 @@ public class TransportInfo {
         this.account = account;
     }
 
-    public TransportInfo(Account account, Address workAddress){
+    public TransportInfo(Account account, Adress workAddress){
         this.account = account;
     }
     public int getId() {

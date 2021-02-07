@@ -1,6 +1,6 @@
 package com.oc.p12.Bean.Dto.Adress;
 
-import com.oc.p12.Entity.Address;
+import com.oc.p12.Entity.Adress;
 
 public class AdressDto {
 
@@ -30,7 +30,7 @@ public class AdressDto {
         isHomeAddress = homeAddress;
     }
 
-    public AdressDto(Address address) {
+    public AdressDto(Adress address) {
         this.id = address.getId();
         this.streetNumber = address.getStreetNumber();
         this.streetName = address.getStreetName();

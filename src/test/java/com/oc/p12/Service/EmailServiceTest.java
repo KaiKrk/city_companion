@@ -23,5 +23,6 @@ public class EmailServiceTest {
     @Test
     public void sendEmailTest() throws Exception {
         emailService.sendEmailDailyInformations("testemailcitycompanion@yopmail.com", 19);
+        emailService.sendEmailDailyInformations("testemailcitycompanion@yopmail.com", 21);
     }
 }

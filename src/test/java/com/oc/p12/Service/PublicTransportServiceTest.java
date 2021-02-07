@@ -39,9 +39,9 @@ public class PublicTransportServiceTest {
 
     @Test
     public void getLineStations(){
-        String transportType = "buses";
+        String transportType = "rers";
 
-        String line = "84";
+        String line = "A";
 
         PublicTransportStationsResponse publicTransportStationsResponse = publicTransportService.getLineStations(transportType,line);
         System.out.println(publicTransportStationsResponse);

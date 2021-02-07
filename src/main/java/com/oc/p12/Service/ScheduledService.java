@@ -12,6 +12,9 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+/**
+ * scheduled service
+ */
 @Service
 @EnableScheduling
 public class ScheduledService {
@@ -21,27 +24,30 @@ public class ScheduledService {
     private @Autowired PublicTransportService publicTransportService;
     private @Autowired EmailService emailService;
 
-
+    /**
+     * schedule method to start weatcher data fetch
+     */
     @Scheduled(cron = "0 0 10 */2 * ?")// every 2 days at 10am
     public void fetchWeatherDatas(){
         weatherService.fetchWeatherDatas();
     }
 
+
     @Scheduled(cron = "0 */5 * ? * *")// cron every 5 minutes
-    public void getPublicTransportTimelineForAccounts(){
-        String time = LocalTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME).substring(0,8);
-        System.out.println(time);
-/*        List<Account> accountByDepartureTime = accountService.getAccountByDepartureTime(time);
-        List<PublicTransportTravel> publicTransportTravels = publicTransportService.getPublicTransportTravelsByAccountIn(accountByDepartureTime);*/
-     //   List<Account> accounts = accountService.findAccountByListIdAccount(idAccounts);
+        public void getPublicTransportTimelineForAccounts(){
+            String time = LocalTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME).substring(0,8);
     }
 
+    /**
+     * method that retrieve every minutes account that have departure time soon to inform them about weather and transport/traffic status
+     */
     @SneakyThrows
     @Scheduled(cron = "0 */1 * ? * *")// cron every minute
     public void sendDailyInformationsEmail(){
-        String time = LocalTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME).substring(0,8);
+        String time = LocalTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME).substring(0,5);
         System.out.println(time);
         List<Account> accounts  = accountService.getAccountByDepartureTime(time);
+        System.out.println("accounts " + accounts);
         if (!accounts.isEmpty()){
             for (Account account : accounts
             ) {

@@ -27,11 +27,11 @@ public class Account {
 
     @OneToOne
     @JoinColumn(name = "adress_id", referencedColumnName = "adress_id")
-    private Address address;
+    private Adress address;
 
     @OneToOne
     @JoinColumn(name = "work_adress_id", referencedColumnName = "adress_id")
-    private Address workAddress;
+    private Adress workAddress;
 
     @Column(name = "departure_time")
     private String departureTime;
@@ -55,11 +55,11 @@ public class Account {
         this.id = id;
     }
 
-    public Address getWorkAddress() {
+    public Adress getWorkAddress() {
         return workAddress;
     }
 
-    public void setWorkAddress(Address workAddress) {
+    public void setWorkAddress(Adress workAddress) {
         this.workAddress = workAddress;
     }
 
@@ -95,11 +95,11 @@ public class Account {
         this.password = password;
     }
 
-    public Address getAddress() {
+    public Adress getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(Adress address) {
         this.address = address;
     }
 
